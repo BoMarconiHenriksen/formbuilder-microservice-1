@@ -1,0 +1,15 @@
+# sdk images are recommended for development. Contains .NET Core CLI, .NET Core and ASP.NET Core
+FROM microsoft/dotnet:2.2-sdk-nanoserver-1809
+WORKDIR /app
+
+COPY . .
+
+# Restore the packages for our solution
+RUN dotnet restore
+
+# Publish the application to the publish folder
+RUN dotnet publish "R3NextGenBackend.csproj" -o /publish
+
+WORKDIR /publish
+# Configure the container to run as an executable that will start the application
+ENTRYPOINT ["dotnet", "R3NextGenBackend.dll"]
