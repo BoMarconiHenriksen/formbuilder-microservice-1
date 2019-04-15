@@ -8,6 +8,6 @@ COPY ./package.json ./
 RUN npm install -g @quasar/cli
 RUN npm install
 
-# COPY . .
+COPY . .
 
 CMD ["quasar", "dev"]
