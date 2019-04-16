@@ -21,7 +21,14 @@ namespace R3NextGenBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.ConfigureCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                builder => builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+            });
 
             services.ConfigureIISIntegration();
             services.AddDbContext<RepositoryContext>(options =>
@@ -52,12 +59,7 @@ namespace R3NextGenBackend
                 app.UseHsts();
             }
 
-            //app.UseCors("CorsPolicy");
-
-            //app.UseForwardedHeaders(new ForwardedHeadersOptions
-            //{
-            //    ForwardedHeaders = ForwardedHeaders.All
-            //});
+            app.UseCors("CorsPolicy");
 
             // enables using static files for the request. If we don’t set a path to the static files, it will use a wwwroot folder in our solution explorer by default.
             app.UseStaticFiles();

@@ -1,14 +1,12 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-/* eslint-disable no-tabs */
 
 // Mutation set layoutData in state for initial run.
 export const saveLayout = (state, initialLayoutData) => {
   state.gridLayout = initialLayoutData
-  console.log('I mutations.js ' + state.gridLayout)
 }
 
 // Mutation new grid item in gridLayout.
 export const setNewGridItem = (state, payload) => {
+  console.log(payload)
   state.gridLayout.push(payload)
   console.log(state.gridLayout)
 }

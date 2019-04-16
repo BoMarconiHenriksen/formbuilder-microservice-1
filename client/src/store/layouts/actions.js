@@ -1,6 +1,6 @@
-// import axios from 'axios'
+import axios from 'axios'
 
-// const baseUrl = 'https://localhost:5001'
+const baseUrl = 'https://localhost:5001/api'
 
 import initialLayoutData from '../../assets/savedLayouts/demo.json'
 
@@ -63,6 +63,17 @@ export const saveInputField = ({ commit }, payload) => {
 export const updateLockOnComponent = ({ commit }, payload) => {
   commit('saveLockOnComponent', payload)
 }
+
+// Fetch the forms from the database
+export const fetchFormsFromDb = ({ commit }) =>
+  new Promise((resolve, reject) => {
+    axios.get(`${baseUrl}/Forms`).then(response => {
+      commit('setNewGridItem', response.data)
+      resolve()
+    }).catch(error => {
+      reject(error)
+    })
+  })
 
 // Helper methods for generating and checking random numbers for the id.
 function generateRandomNumber () {

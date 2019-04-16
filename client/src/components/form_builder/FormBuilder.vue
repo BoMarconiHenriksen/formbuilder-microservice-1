@@ -5,7 +5,7 @@
       <div class="q-pa-md q-gutter-sm">
 
       <q-btn color="white" text-color="black" label="Input Felt" @click="addInputFieldToGrid" />
-      <q-btn color="white" text-color="black" label="Data" @click="getLayoutData" />
+      <q-btn color="white" text-color="black" label="Get all forms" @click="fetchFormsFromDb" />
 
       </div>
       <!-- :layout: "getLayoutData" -->
@@ -68,7 +68,8 @@ export default {
   methods: {
     ...mapActions([
       'addInputFieldToGrid',
-      'editLabel'
+      'editLabel',
+      'fetchFormsFromDb'
     ])
   },
   computed: {
