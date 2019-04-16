@@ -22,9 +22,9 @@ export default {
     })
   }
   // The created hook allows you to add code which is run if the Vue instance is created.
-  /* created () {
-    this.getInitialLayout()
-  } */
+  // created () {
+  //  this.getInitialLayout()
+  // }
 
 }
 </script>

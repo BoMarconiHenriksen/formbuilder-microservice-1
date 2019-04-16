@@ -29,7 +29,7 @@ namespace R3NextGenBackend
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Connection string for the json file for development without docker.
-            // For local development without docker Server=(localdb)\\mssqllocaldb;Database=c3NextGen;Trusted_Connection=True;
+            // For local development without docker Server=(localdb)\\mssqllocaldb;Database=c3NextGen;Trusted_Connection=True; // OLD Server=dbformbuilder
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
