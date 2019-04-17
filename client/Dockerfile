@@ -6,6 +6,9 @@ WORKDIR /app
 COPY ./package.json ./
 
 RUN npm install -g @quasar/cli
-RUN npm install
+RUN npm install --save-dev quasar-cli@latest
+COPY . .
 
-CMD ["quasar", "build"]
+CMD ["quasar", "dev"]
+
+# ! Add nginx!!! CMD ["quasar", "build"]

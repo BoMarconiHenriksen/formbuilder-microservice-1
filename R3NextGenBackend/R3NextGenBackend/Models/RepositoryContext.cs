@@ -42,18 +42,22 @@ namespace R3NextGenBackend
             //Seed data.
             modelBuilder.Entity<Form>().HasData(
                 new Form()
-                { Id = 1, Name = "Prøve Formular" }
-                );
-
-            modelBuilder.Entity<CompletedForm>().HasData(
+                { Id = 1, Name = "Prøve Formular" },
                 new CompletedForm()
-                { Id = 1, UserId = 1, CompletedDate = DateTime.Now.Date, FormId = 1 }
-                );
-
-            modelBuilder.Entity<FormField>().HasData(
+                { Id = 1, UserId = 1, CompletedDate = DateTime.Now.Date, FormId = 1 },
                 new FormField()
                 { Id = 1, Column = 3, Row = 3, Width = 3, Height = 3, Headline = "Indtast Dit Navn", Static = false, FormId = 1 }
                 );
+
+            // modelBuilder.Entity<CompletedForm>().HasData(
+            //    new CompletedForm()
+            //    { Id = 1, UserId = 1, CompletedDate = DateTime.Now.Date, FormId = 1 }
+            //    );
+
+            // modelBuilder.Entity<FormField>().HasData(
+            //    new FormField()
+            //    { Id = 1, Column = 3, Row = 3, Width = 3, Height = 3, Headline = "Indtast Dit Navn", Static = false, FormId = 1 }
+            //    );
 
             modelBuilder.Entity<FormFieldValue>().HasData(
                 new FormFieldValue()
