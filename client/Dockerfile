@@ -1,14 +1,16 @@
 # Production
-FROM node:alpine
+FROM node:alpine as builder
 
-WORKDIR /app
+WORKDIR '/app'
 
-COPY ./package.json ./
+COPY ./package*.json /app/
 
 RUN npm install -g @quasar/cli
 RUN npm install --save-dev quasar-cli@latest
-COPY . .
+COPY . /app/
+RUN quasar build
 
-CMD ["quasar", "dev"]
-
-# ! Add nginx!!! CMD ["quasar", "build"]
+FROM nginx
+EXPOSE 8080
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/dist/spa /usr/share/nginx/html
