@@ -6,6 +6,7 @@ EXPOSE 443
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY R3NextGenBackend.csproj ./R3NextGenBackend/
+
 # Restore the packages for our solution
 RUN dotnet restore "R3NextGenBackend/R3NextGenBackend.csproj"
 WORKDIR "/src/R3NextGenBackend"

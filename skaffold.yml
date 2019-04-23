@@ -12,7 +12,7 @@ profiles:
           dockerfile: Dockerfile.dev
         # For hot-reloading
         sync:
-          'client/src/*': ./client/src/
+          'src/*': src/
       - image: bomarconi/formbuilder-server
         context: ./R3NextGenBackend/R3NextGenBackend/
         docker:
@@ -36,6 +36,9 @@ profiles:
         # Directory containing the artifact's sources
         docker:
           dockerfile: Dockerfile
+        # For hot-reloading
+        sync:
+          'src/*': src/
       - image: bomarconi/formbuilder-server
         context: ./R3NextGenBackend/R3NextGenBackend/
         docker:
