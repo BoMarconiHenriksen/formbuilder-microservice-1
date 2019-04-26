@@ -40,15 +40,16 @@ namespace R3NextGenBackend
                 .OnDelete(DeleteBehavior.Restrict);
 
             //Seed data.
-            modelBuilder.Entity<Form>().HasData(
-                new Form()
-                { Id = 1, Name = "Prøve Formular" },
-                new CompletedForm()
-                { Id = 1, UserId = 1, CompletedDate = DateTime.Now.Date, FormId = 1 },
-                new FormField()
-                { Id = 1, Column = 3, Row = 3, Width = 3, Height = 3, Headline = "Indtast Dit Navn", Static = false, FormId = 1 }
-                );
+            // modelBuilder.Entity<Form>().HasData(
+            //    new Form()
+            //    { Id = 2, Name = "Name Box" },
+            //    new CompletedForm()
+            //    { Id = 2, UserId = 1, CompletedDate = DateTime.Now.Date, FormId = 1 },
+            //    new FormField()
+            //    { Id = 2, Column = 3, Row = 3, Width = 3, Height = 3, Headline = "Indtast Dit Navn", Static = false, FormId = 1 }
+            //    );
 
+            // Seed data for the first seed data
             // modelBuilder.Entity<CompletedForm>().HasData(
             //    new CompletedForm()
             //    { Id = 1, UserId = 1, CompletedDate = DateTime.Now.Date, FormId = 1 }
@@ -59,15 +60,15 @@ namespace R3NextGenBackend
             //    { Id = 1, Column = 3, Row = 3, Width = 3, Height = 3, Headline = "Indtast Dit Navn", Static = false, FormId = 1 }
             //    );
 
-            modelBuilder.Entity<FormFieldValue>().HasData(
-                new FormFieldValue()
-                { Id = 1, Value = "Dette er valuen", FormFieldId = 1, CompletedFormId = 1 }
-                );
+            // modelBuilder.Entity<FormFieldValue>().HasData(
+            //    new FormFieldValue()
+            //    { Id = 1, Value = "Dette er valuen", FormFieldId = 1, CompletedFormId = 1 }
+            //    );
 
-            modelBuilder.Entity<Field>().HasData(
-                new Field()
-                { Id = 1, Component = "appInputFieldComponent", FormFieldId = 1 }
-                );
+            // modelBuilder.Entity<Field>().HasData(
+            //    new Field()
+            //    { Id = 1, Component = "appInputFieldComponent", FormFieldId = 1 }
+            //    );
 
 
         }

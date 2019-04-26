@@ -8,7 +8,7 @@ export const saveLayout = (state, initialLayoutData) => {
 export const setNewGridItem = (state, payload) => {
   console.log(payload)
   state.gridLayout.push(payload)
-  console.log(state.gridLayout)
+  // console.log(state.gridLayout)
 }
 
 // Mutation to remove item from gridLayout.
