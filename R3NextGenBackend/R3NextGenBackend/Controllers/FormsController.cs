@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BackendNextGen.Models;
 using R3NextGenBackend;
@@ -27,6 +28,16 @@ namespace R3NextGenBackend.Controllers
         {
             return await _context.Form.ToListAsync();
         }
+
+        // GET: api/Forms/all
+        // [HttpGet("all")]
+        // public async Task<IActionResult> Index()
+        // {
+        //    var forms = _context.Form
+        //        .Include(c => c.FormFields)
+        //        .AsNoTracking();
+        //    return await forms.ToListAsync();
+        // }
 
         // GET: api/Forms/5
         [HttpGet("{id}")]

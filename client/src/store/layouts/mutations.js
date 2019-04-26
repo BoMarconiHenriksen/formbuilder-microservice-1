@@ -7,6 +7,7 @@ export const saveLayout = (state, initialLayoutData) => {
 // Mutation new grid item in gridLayout.
 export const setNewGridItem = (state, payload) => {
   console.log(payload)
+  // console.log(payload[0].getformfields)
   state.gridLayout.push(payload)
   // console.log(state.gridLayout)
 }

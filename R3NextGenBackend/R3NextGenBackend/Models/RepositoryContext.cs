@@ -11,11 +11,11 @@ namespace R3NextGenBackend
         {
         }
 
-        public virtual DbSet<CompletedForm> CompletedForm { get; set; }
-        public virtual DbSet<Field> Field { get; set; }
-        public virtual DbSet<Form> Form { get; set; }
-        public virtual DbSet<FormField> FormField { get; set; }
-        public virtual DbSet<FormFieldValue> FormFieldValue { get; set; }
+        public DbSet<CompletedForm> CompletedForm { get; set; }
+        public DbSet<Field> Field { get; set; }
+        public DbSet<Form> Form { get; set; }
+        public DbSet<FormField> FormField { get; set; }
+        public DbSet<FormFieldValue> FormFieldValue { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

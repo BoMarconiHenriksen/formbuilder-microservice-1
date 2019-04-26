@@ -10,6 +10,8 @@ using R3NextGenBackend;
 
 namespace R3NextGenBackend.Controllers
 {
+    // [Route("api/CompletedForm")]
+    // [ApiController]
     public class CompletedFormsController : Controller
     {
         private readonly RepositoryContext _context;
@@ -20,6 +22,7 @@ namespace R3NextGenBackend.Controllers
         }
 
         // GET: CompletedForms
+        // [HttpGet]
         public async Task<IActionResult> Index()
         {
             var repositoryContext = _context.CompletedForm.Include(c => c.Form);
@@ -27,6 +30,7 @@ namespace R3NextGenBackend.Controllers
         }
 
         // GET: CompletedForms/Details/5
+        // [HttpGet("{id}")]
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -46,6 +50,7 @@ namespace R3NextGenBackend.Controllers
         }
 
         // GET: CompletedForms/Create
+        // [HttpGet("{id}")]
         public IActionResult Create()
         {
             ViewData["FormId"] = new SelectList(_context.Form, "Id", "Id");
