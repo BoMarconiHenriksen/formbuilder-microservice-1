@@ -29,6 +29,10 @@ namespace R3NextGenBackend.Controllers
             return await _context.Form.ToListAsync();
         }
 
+        // Get form name and id and show the names in a dropdown list.
+        // Get form based on id and show the form on the formbuilder.
+        // Create a form, give it a name and save it.
+
         // GET: api/Forms/all
         // [HttpGet("all")]
         // public async Task<IActionResult> Index()
