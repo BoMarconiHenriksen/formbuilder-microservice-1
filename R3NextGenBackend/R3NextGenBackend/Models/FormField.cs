@@ -6,14 +6,14 @@ namespace BackendNextGen.Models
 {
     public class FormField
     {
-        public FormField()
-        {
-        }
+        //public FormField()
+        //{
+        //}
 
-        public FormField(int v)
-        {
-            FormFieldValues = new HashSet<FormFieldValue>();
-        }
+        //public FormField(int v)
+        //{
+        //    FormFieldValues = new HashSet<FormFieldValue>();
+        //}
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -35,8 +35,10 @@ namespace BackendNextGen.Models
         public long FormId { get; set; }
         public Form Form { get; set; }
 
-        public ICollection<FormFieldValue> FormFieldValues { get; set; }
+        public ICollection<FormFieldValue> FormFieldValues { get; set; } = new HashSet<FormFieldValue>();
 
-        public Field FieldComponent { get; set; }
+        public Component ComponentField { get; set; }
     }
 }
+
+// https://docs.microsoft.com/en-us/ef/core/modeling/constructors

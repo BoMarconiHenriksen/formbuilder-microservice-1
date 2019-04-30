@@ -39,17 +39,7 @@ namespace R3NextGenBackend
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //Seed data. Don't use this!
-            //modelBuilder.Entity<Form>().HasData(
-            //    new Form()
-            //    { Id = 2, Name = "Name Box" },
-            //    new CompletedForm()
-            //    { Id = 2, UserId = 1, CompletedDate = DateTime.Now.Date, FormId = 1 },
-            //    new FormField()
-            //    { Id = 2, Column = 3, Row = 3, Width = 3, Height = 3, Headline = "Indtast Dit Navn", Static = false, FormId = 1 }
-            //    );
-
-            //Seed data for the first seed data
+            //Seed data 
            modelBuilder.Entity<Form>().HasData(
                new Form()
                { Id = 1, Name = "Brand" }
