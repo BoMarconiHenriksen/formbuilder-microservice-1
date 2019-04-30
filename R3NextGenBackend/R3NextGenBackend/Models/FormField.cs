@@ -36,5 +36,7 @@ namespace BackendNextGen.Models
         public Form Form { get; set; }
 
         public ICollection<FormFieldValue> FormFieldValues { get; set; }
+
+        public Field FieldComponent { get; set; }
     }
 }

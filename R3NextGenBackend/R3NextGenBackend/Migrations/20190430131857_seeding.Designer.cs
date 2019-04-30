@@ -10,8 +10,8 @@ using R3NextGenBackend;
 namespace R3NextGenBackend.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20190322103938_InitialModel")]
-    partial class InitialModel
+    [Migration("20190430131857_seeding")]
+    partial class seeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,7 +43,7 @@ namespace R3NextGenBackend.Migrations
                         new
                         {
                             Id = 1L,
-                            CompletedDate = new DateTime(2019, 3, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 4, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 1L,
                             UserId = 1L
                         });
@@ -62,7 +62,8 @@ namespace R3NextGenBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FormFieldId");
+                    b.HasIndex("FormFieldId")
+                        .IsUnique();
 
                     b.ToTable("Field");
 
@@ -91,7 +92,7 @@ namespace R3NextGenBackend.Migrations
                         new
                         {
                             Id = 1L,
-                            Name = "Prøve Formular"
+                            Name = "Brand"
                         });
                 });
 
@@ -181,8 +182,8 @@ namespace R3NextGenBackend.Migrations
             modelBuilder.Entity("BackendNextGen.Models.Field", b =>
                 {
                     b.HasOne("BackendNextGen.Models.FormField", "FormField")
-                        .WithMany()
-                        .HasForeignKey("FormFieldId")
+                        .WithOne("FieldComponent")
+                        .HasForeignKey("BackendNextGen.Models.Field", "FormFieldId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

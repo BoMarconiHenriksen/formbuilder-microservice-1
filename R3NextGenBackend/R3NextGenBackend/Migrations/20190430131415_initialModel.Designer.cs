@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using R3NextGenBackend;
 
 namespace R3NextGenBackend.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20190430131415_initialModel")]
+    partial class initialModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,15 +38,6 @@ namespace R3NextGenBackend.Migrations
                     b.HasIndex("FormId");
 
                     b.ToTable("CompletedForm");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CompletedDate = new DateTime(2019, 4, 30, 0, 0, 0, 0, DateTimeKind.Local),
-                            FormId = 1L,
-                            UserId = 1L
-                        });
                 });
 
             modelBuilder.Entity("BackendNextGen.Models.Field", b =>
@@ -64,14 +57,6 @@ namespace R3NextGenBackend.Migrations
                         .IsUnique();
 
                     b.ToTable("Field");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Component = "appInputFieldComponent",
-                            FormFieldId = 1L
-                        });
                 });
 
             modelBuilder.Entity("BackendNextGen.Models.Form", b =>
@@ -85,13 +70,6 @@ namespace R3NextGenBackend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Form");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Name = "Brand"
-                        });
                 });
 
             modelBuilder.Entity("BackendNextGen.Models.FormField", b =>
@@ -119,19 +97,6 @@ namespace R3NextGenBackend.Migrations
                     b.HasIndex("FormId");
 
                     b.ToTable("FormField");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Column = 3,
-                            FormId = 1L,
-                            Headline = "Indtast Dit Navn",
-                            Height = 3,
-                            Row = 3,
-                            Static = false,
-                            Width = 3
-                        });
                 });
 
             modelBuilder.Entity("BackendNextGen.Models.FormFieldValue", b =>
@@ -158,15 +123,6 @@ namespace R3NextGenBackend.Migrations
                     b.HasIndex("FormFieldId1");
 
                     b.ToTable("FormFieldValue");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CompletedFormId = 1L,
-                            FormFieldId = 1L,
-                            Value = "Dette er valuen"
-                        });
                 });
 
             modelBuilder.Entity("BackendNextGen.Models.CompletedForm", b =>

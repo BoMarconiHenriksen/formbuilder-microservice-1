@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using R3NextGenBackend.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -31,10 +33,15 @@ namespace R3NextGenBackend
             });
 
             services.ConfigureIISIntegration();
+
             services.AddDbContext<RepositoryContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
             // Connection string for the json file for development without docker.
             // For local development without docker Server=(localdb)\\mssqllocaldb;Database=c3NextGen;Trusted_Connection=True; // OLD Server=dbformbuilder
 

@@ -23,10 +23,15 @@ namespace R3NextGenBackend.Controllers
         }
 
         // GET: api/Forms
-        [HttpGet]
+        //[HttpGet]
         public async Task<ActionResult<IEnumerable<Form>>> GetForm()
         {
-            return await _context.Form.ToListAsync();
+            //return await _context.Form.ToListAsync();
+            return await _context.Form
+                .Include(form => form.FormFields)
+                    //.ThenInclude(FormFields => FormFields.Field)
+                .Include(c => c.CompletedForms)
+                .ToListAsync();
         }
 
         // Get form name and id and show the names in a dropdown list.
@@ -34,14 +39,17 @@ namespace R3NextGenBackend.Controllers
         // Create a form, give it a name and save it.
 
         // GET: api/Forms/all
-        // [HttpGet("all")]
-        // public async Task<IActionResult> Index()
-        // {
-        //    var forms = _context.Form
-        //        .Include(c => c.FormFields)
-        //        .AsNoTracking();
-        //    return await forms.ToListAsync();
-        // }
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Form>>> GetForm()
+        //{
+            //var formItems = _context.Form
+            //    .Include(form => form.FormFields)
+
+            //    .FirstOrDefaultAsync();
+
+            //return await formItems.ToListAsync();
+            //return await _context.Form.Include(f => f.FormFields).ToListAsync();
+        //}
 
         // GET: api/Forms/5
         [HttpGet("{id}")]

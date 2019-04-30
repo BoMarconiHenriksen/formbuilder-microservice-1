@@ -67,7 +67,7 @@ export const updateLockOnComponent = ({ commit }, payload) => {
 // Fetch the forms from the database
 export const fetchFormsFromDb = ({ commit }) =>
   new Promise((resolve, reject) => {
-    axios.get(`${baseUrl}/Forms`).then(response => {
+    axios.get(`${baseUrl}/Forms/`).then(response => {
       commit('setNewGridItem', response.data)
       resolve()
     }).catch(error => {
