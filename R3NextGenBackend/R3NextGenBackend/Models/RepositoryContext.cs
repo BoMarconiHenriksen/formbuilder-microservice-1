@@ -11,10 +11,10 @@ namespace R3NextGenBackend
         {
         }
 
-        public DbSet<CompletedForm> CompletedForm { get; set; }
-        public DbSet<Field> Field { get; set; }
         public DbSet<Form> Form { get; set; }
+        public DbSet<CompletedForm> CompletedForm { get; set; }
         public DbSet<FormField> FormField { get; set; }
+        public DbSet<Component> Component { get; set; }
         public DbSet<FormFieldValue> FormFieldValue { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -40,10 +40,10 @@ namespace R3NextGenBackend
                 .OnDelete(DeleteBehavior.Restrict);
 
             //Seed data 
-           modelBuilder.Entity<Form>().HasData(
-               new Form()
-               { Id = 1, Name = "Brand" }
-               );
+            modelBuilder.Entity<Form>().HasData(
+                new Form()
+                { Id = 1, Name = "Brand" }
+                );
 
             modelBuilder.Entity<CompletedForm>().HasData(
                 new CompletedForm()
@@ -60,9 +60,9 @@ namespace R3NextGenBackend
                { Id = 1, Value = "Dette er valuen", FormFieldId = 1, CompletedFormId = 1 }
                );
 
-            modelBuilder.Entity<Field>().HasData(
-               new Field()
-               { Id = 1, Component = "appInputFieldComponent", FormFieldId = 1 }
+            modelBuilder.Entity<Component>().HasData(
+               new Component()
+               { Id = 1, ComponentName = "appInputFieldComponent", FormFieldId = 1 }
                );
 
 

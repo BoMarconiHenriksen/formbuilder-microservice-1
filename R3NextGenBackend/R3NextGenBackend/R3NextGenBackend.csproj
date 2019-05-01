@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190501065419_initialModel.cs" />
+    <Compile Remove="Migrations\20190501065419_initialModel.Designer.cs" />
+    <Compile Remove="Migrations\20190501081351_seeding.cs" />
+    <Compile Remove="Migrations\20190501081351_seeding.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ErikEJ.EntityFrameworkCore.DgmlBuilder" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />

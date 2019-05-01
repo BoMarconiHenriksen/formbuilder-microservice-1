@@ -10,8 +10,8 @@ using R3NextGenBackend;
 namespace R3NextGenBackend.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20190430131857_seeding")]
-    partial class seeding
+    [Migration("20190501081308_initialModel")]
+    partial class initialModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,24 +38,15 @@ namespace R3NextGenBackend.Migrations
                     b.HasIndex("FormId");
 
                     b.ToTable("CompletedForm");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CompletedDate = new DateTime(2019, 4, 30, 0, 0, 0, 0, DateTimeKind.Local),
-                            FormId = 1L,
-                            UserId = 1L
-                        });
                 });
 
-            modelBuilder.Entity("BackendNextGen.Models.Field", b =>
+            modelBuilder.Entity("BackendNextGen.Models.Component", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Component")
+                    b.Property<string>("ComponentName")
                         .HasMaxLength(25);
 
                     b.Property<long>("FormFieldId");
@@ -65,15 +56,7 @@ namespace R3NextGenBackend.Migrations
                     b.HasIndex("FormFieldId")
                         .IsUnique();
 
-                    b.ToTable("Field");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Component = "appInputFieldComponent",
-                            FormFieldId = 1L
-                        });
+                    b.ToTable("Component");
                 });
 
             modelBuilder.Entity("BackendNextGen.Models.Form", b =>
@@ -87,13 +70,6 @@ namespace R3NextGenBackend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Form");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Name = "Brand"
-                        });
                 });
 
             modelBuilder.Entity("BackendNextGen.Models.FormField", b =>
@@ -121,19 +97,6 @@ namespace R3NextGenBackend.Migrations
                     b.HasIndex("FormId");
 
                     b.ToTable("FormField");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Column = 3,
-                            FormId = 1L,
-                            Headline = "Indtast Dit Navn",
-                            Height = 3,
-                            Row = 3,
-                            Static = false,
-                            Width = 3
-                        });
                 });
 
             modelBuilder.Entity("BackendNextGen.Models.FormFieldValue", b =>
@@ -160,15 +123,6 @@ namespace R3NextGenBackend.Migrations
                     b.HasIndex("FormFieldId1");
 
                     b.ToTable("FormFieldValue");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CompletedFormId = 1L,
-                            FormFieldId = 1L,
-                            Value = "Dette er valuen"
-                        });
                 });
 
             modelBuilder.Entity("BackendNextGen.Models.CompletedForm", b =>
@@ -179,11 +133,11 @@ namespace R3NextGenBackend.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BackendNextGen.Models.Field", b =>
+            modelBuilder.Entity("BackendNextGen.Models.Component", b =>
                 {
                     b.HasOne("BackendNextGen.Models.FormField", "FormField")
-                        .WithOne("FieldComponent")
-                        .HasForeignKey("BackendNextGen.Models.Field", "FormFieldId")
+                        .WithOne("Component")
+                        .HasForeignKey("BackendNextGen.Models.Component", "FormFieldId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

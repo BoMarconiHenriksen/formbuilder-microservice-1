@@ -29,8 +29,10 @@ namespace R3NextGenBackend.Controllers
             //return await _context.Form.ToListAsync();
             return await _context.Form
                 .Include(form => form.FormFields)
-                    //.ThenInclude(FormFields => FormFields.Field)
+                    .ThenInclude(FormFields => FormFields.Component)
                 .Include(c => c.CompletedForms)
+                    .ThenInclude(CompletedForms => CompletedForms.FormFieldValues)
+
                 .ToListAsync();
         }
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BackendNextGen.Models
@@ -12,8 +13,10 @@ namespace BackendNextGen.Models
         [StringLength(25, ErrorMessage = "Component cannot be longer than 25 characters.")]
         public string ComponentName { get; set; }
 
-        [ForeignKey("FormField")]
+        // [ForeignKey("FormField")]
         public long FormFieldId { get; set; }
         public FormField FormField { get; set; }
+
+        
     }
 }

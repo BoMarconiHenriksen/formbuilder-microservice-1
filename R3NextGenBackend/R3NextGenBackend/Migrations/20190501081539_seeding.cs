@@ -15,7 +15,7 @@ namespace R3NextGenBackend.Migrations
             migrationBuilder.InsertData(
                 table: "CompletedForm",
                 columns: new[] { "Id", "CompletedDate", "FormId", "UserId" },
-                values: new object[] { 1L, new DateTime(2019, 4, 30, 0, 0, 0, 0, DateTimeKind.Local), 1L, 1L });
+                values: new object[] { 1L, new DateTime(2019, 5, 1, 0, 0, 0, 0, DateTimeKind.Local), 1L, 1L });
 
             migrationBuilder.InsertData(
                 table: "FormField",
@@ -23,8 +23,8 @@ namespace R3NextGenBackend.Migrations
                 values: new object[] { 1L, 3, 1L, "Indtast Dit Navn", 3, 3, false, 3 });
 
             migrationBuilder.InsertData(
-                table: "Field",
-                columns: new[] { "Id", "Component", "FormFieldId" },
+                table: "Component",
+                columns: new[] { "Id", "ComponentName", "FormFieldId" },
                 values: new object[] { 1L, "appInputFieldComponent", 1L });
 
             migrationBuilder.InsertData(
@@ -36,7 +36,7 @@ namespace R3NextGenBackend.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
-                table: "Field",
+                table: "Component",
                 keyColumn: "Id",
                 keyValue: 1L);
 
