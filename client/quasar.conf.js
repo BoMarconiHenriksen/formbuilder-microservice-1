@@ -52,7 +52,11 @@ module.exports = function (ctx) {
         'QAvatar',
         'QCardSection',
         'QMenu',
-        'QTooltip'
+        'QTooltip',
+        'QTable',
+        'QTh',
+        'QTr',
+        'QTd'
       ],
 
       directives: [

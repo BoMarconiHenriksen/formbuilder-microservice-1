@@ -5,7 +5,6 @@
       <div class="q-pa-md q-gutter-sm">
 
       <q-btn color="white" text-color="black" label="Input Felt" @click="addInputFieldToGrid" />
-      <q-btn color="white" text-color="black" label="Get all forms" @click="fetchFormsFromDb" />
 
       </div>
       <!-- :layout: "getLayoutData" -->
@@ -44,6 +43,8 @@
          </grid-item>
       </grid-layout>
 
+      <appGetTemplateComponent />
+
    </q-page>
 </template>
 
@@ -52,11 +53,13 @@ import { GridLayout, GridItem } from 'vue-grid-layout'
 import { mapGetters, mapActions } from 'vuex'
 import InputFieldComponent from './widgets/InputFieldComponent.vue'
 import DeleteAlert from './helper_components/DeleteAlert.vue'
+import GetTemplateComponent from './crud_components/GetTemplateComponent.vue'
 
 export default {
   components: {
     appInputFieldComponent: InputFieldComponent,
     appDeleteAlert: DeleteAlert,
+    appGetTemplateComponent: GetTemplateComponent,
     GridLayout,
     GridItem
   },
@@ -68,8 +71,7 @@ export default {
   methods: {
     ...mapActions([
       'addInputFieldToGrid',
-      'editLabel',
-      'fetchFormsFromDb'
+      'editLabel'
     ])
   },
   computed: {

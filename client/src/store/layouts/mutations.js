@@ -4,12 +4,28 @@ export const saveLayout = (state, initialLayoutData) => {
   state.gridLayout = initialLayoutData
 }
 
-// Mutation new grid item in gridLayout.
-export const setNewGridItem = (state, payload) => {
+// Mutation new basic grid item in gridLayout.
+export const setNewGridItem = (state, inputFieldLayout) => {
+  console.log(inputFieldLayout)
+  state.gridLayout.push(inputFieldLayout)
+}
+
+// List of templates from backend.
+export const getListOfGridItems = (state, payload) => {
   console.log(payload)
-  // console.log(payload[0].getformfields)
-  state.gridLayout.push(payload)
-  // console.log(state.gridLayout)
+  let tableData = [ ]
+  for (let key in payload) {
+    const template = { }
+    // console.log(payload[key])
+    template.id = payload[key].id
+    template.name = payload[key].name
+    template.completedDate = payload[key].completedForms[0].completedDate
+    template.headline = payload[key].formFields[0].headline
+    tableData.push(template)
+  }
+  console.log(tableData)
+  state.tableData.push(tableData)
+  state.listOfGridlayouts.push(payload)
 }
 
 // Mutation to remove item from gridLayout.

@@ -46,6 +46,10 @@ export const addInputFieldToGrid = ({ commit, state }) => {
 
   inputFieldLayout.i = componentIndex
 
+  // Create an array of obejcts
+  // let listOfWidget = [ ]
+  // listOfWidget.push(inputFieldLayout)
+
   commit('setNewGridItem', inputFieldLayout)
 }
 
@@ -68,7 +72,7 @@ export const updateLockOnComponent = ({ commit }, payload) => {
 export const fetchFormsFromDb = ({ commit }) =>
   new Promise((resolve, reject) => {
     axios.get(`${baseUrl}/Forms/`).then(response => {
-      commit('setNewGridItem', response.data)
+      commit('getListOfGridItems', response.data)
       resolve()
     }).catch(error => {
       reject(error)

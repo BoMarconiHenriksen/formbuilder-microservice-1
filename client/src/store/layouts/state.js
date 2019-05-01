@@ -1,4 +1,6 @@
 // Defining the state here.
 export default {
-  gridLayout: [ ]
+  gridLayout: [ ],
+  listOfGridlayouts: null,
+  tableData: null
 }
