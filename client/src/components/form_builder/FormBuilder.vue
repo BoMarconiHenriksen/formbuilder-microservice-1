@@ -71,7 +71,8 @@ export default {
   methods: {
     ...mapActions([
       'addInputFieldToGrid',
-      'editLabel'
+      'editLabel',
+      'fetchFormsFromDb'
     ])
   },
   computed: {

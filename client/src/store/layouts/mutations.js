@@ -24,8 +24,8 @@ export const getListOfGridItems = (state, payload) => {
     tableData.push(template)
   }
   console.log(tableData)
-  state.tableData.push(tableData)
-  state.listOfGridlayouts.push(payload)
+  state.tableData = tableData
+  state.listOfGridlayouts = payload
 }
 
 // Mutation to remove item from gridLayout.

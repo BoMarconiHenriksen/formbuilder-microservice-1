@@ -5,5 +5,6 @@ export const getLayoutData = (state) => {
 
 // Get the state of the grid layout list.
 export const getTableData = (state) => {
+  console.log('i getters: ' + state.tableData)
   return state.tableData
 }
