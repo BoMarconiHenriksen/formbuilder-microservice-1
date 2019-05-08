@@ -11,36 +11,66 @@
       :data="data"
       :columns="columns"
       row-key="id"
-      selection="single"
-      :selected.sync="selected"
     >
-
-    <template slot="top-selection" >
-        <q-btn color="negative" flat round icon="delete" @click="deleteRow" />
-    </template>
-
-    <q-tr slot="body-cell-action" slot-scope="props" :props="props">
+    <template v-slot:body="props">
+      <q-tr :props="props" >
 
         <q-td key="id" :props="props">{{ props.row.id }}</q-td>
 
         <q-td key="name" :props="props">
           {{ props.row.name }}
-          <q-popup-edit v-model="props.row.name" title="Update Name" buttons>
-            <q-input type="string" v-model="props.row.name" />
+          <q-icon
+            class="cursor-pointer"
+            name="edit"
+          />
+          <q-popup-edit
+            v-model="props.row.name"
+            title="Update Name"
+            buttons persistent
+            label-set="Save"
+            @save="onEdit(props.row)"
+            >
+            <q-input
+              type="string"
+              v-model="props.row.name"
+              dense autofocus
+              />
           </q-popup-edit>
         </q-td>
 
-        <q-td key="headline" :props="props">{{ props.row.headline }}</q-td>
-        <q-td key="completedDate" :props="props">{{ props.row.completedDate }}</q-td>
-      </q-tr>
-    </q-table>
+        <q-td key="headline" :props="props">
+          <div class="text-pre-wrap">{{ props.row.headline }}
+            <q-icon
+              class="cursor-pointer"
+              name="edit"
+            />
+          </div>
+          <q-popup-edit
+            v-model="props.row.headline"
+            title="Update Headline"
+            buttons
+            persistent
+            label-set="Save"
+            @save="onEdit(props.row)"
+          >
+            <q-input type="string" v-model="props.row.headline" dense autofocus />
+          </q-popup-edit>
+        </q-td>
 
-    <div v-if="selected">
-      Selected: {{ JSON.stringify(selected) }} <!-- [0].name -->
-      <br>
-      one:
-    </div>
-    <p>asd: {{data}}</p>
+        <q-td key="completedDate" :props="props">{{ props.row.completedDate }} </q-td>
+
+        <q-td key="trash" :props="props">
+          <q-icon
+            name="delete"
+            color="negative"
+            class="cursor-pointer"
+            @click="deleteRow(props.row)"
+          />
+        </q-td>
+      </q-tr>
+      </template>
+
+    </q-table>
 
   </q-page>
 </template>
@@ -53,22 +83,14 @@ export default {
   data () {
     return {
       loading: true,
-      selected: [ ],
+      selectedRow: [ ],
       data: this.getTableData,
       columns: [
-        {
-          // name: 'desc',
-          required: true,
-          // label: 'Template',
-          // align: 'left',
-          // field: row => row.name,
-          sortable: true
-        },
-        { name: 'id', align: 'left', label: 'Id', field: 'id', sortable: true },
-        { name: 'name', label: 'Name', field: 'name', sortable: true },
-        { name: 'headline', label: 'Headline', field: 'headline', sortable: true },
-        { name: 'completedDate', label: 'Completed Date', field: 'completedDate', sortable: true }
-
+        { name: 'id', label: 'Id', align: 'left', field: 'id', sortable: true, required: true },
+        { name: 'name', label: 'Name', align: 'left', field: 'name', sortable: true, required: true },
+        { name: 'headline', label: 'headline', align: 'left', field: 'headline', sortable: true },
+        { name: 'completedDate', label: 'Completed Date', align: 'left', field: 'completedDate', sortable: true, required: true },
+        { name: 'trash', align: 'left' }
       ]
     }
   },
@@ -88,8 +110,12 @@ export default {
           this.loading = false
         })
     },
-    deleteRow () {
-      console.log('DeleteRow')
+    deleteRow (selectedRow) {
+      console.log(selectedRow.id)
+    },
+    onEdit (selectedRow) {
+      console.log(selectedRow)
+      console.log(selectedRow.id)
     }
   },
   computed: {

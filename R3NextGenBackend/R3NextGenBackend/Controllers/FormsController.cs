@@ -23,7 +23,7 @@ namespace R3NextGenBackend.Controllers
         }
 
         // GET: api/Forms
-        //[HttpGet]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Form>>> GetForm()
         {
             //return await _context.Form.ToListAsync();
@@ -36,6 +36,18 @@ namespace R3NextGenBackend.Controllers
                 .ToListAsync();
         }
 
+        // Henter kun de informationer vi skal bruge
+        // GET: api/Forms
+        // [HttpGet]
+        //public async Task<ActionResult<IEnumerable<Form>>> GetForm()
+        //{
+        //    return await _context.Form
+        //        .Include(form => form.FormFields)
+        //            .ThenInclude(FormFields => FormFields.Select(a => a.Headline))
+        //        // .Include(CompletedForms => CompletedForms.CompletedForms.Select(b => b.CompletedDate))
+        //        .ToListAsync();
+        //}
+
         // Get form name and id and show the names in a dropdown list.
         // Get form based on id and show the form on the formbuilder.
         // Create a form, give it a name and save it.
@@ -44,13 +56,13 @@ namespace R3NextGenBackend.Controllers
         //[HttpGet]
         //public async Task<ActionResult<IEnumerable<Form>>> GetForm()
         //{
-            //var formItems = _context.Form
-            //    .Include(form => form.FormFields)
+        //var formItems = _context.Form
+        //    .Include(form => form.FormFields)
 
-            //    .FirstOrDefaultAsync();
+        //    .FirstOrDefaultAsync();
 
-            //return await formItems.ToListAsync();
-            //return await _context.Form.Include(f => f.FormFields).ToListAsync();
+        //return await formItems.ToListAsync();
+        //return await _context.Form.Include(f => f.FormFields).ToListAsync();
         //}
 
         // GET: api/Forms/5
