@@ -12,20 +12,30 @@ export const setNewGridItem = (state, inputFieldLayout) => {
 
 // List of templates from backend.
 export const getListOfGridItems = (state, payload) => {
-  console.log(payload)
+  console.log('MUTATIONS PAYLOAD' + payload)
   let tableData = [ ]
   for (let key in payload) {
     const template = { }
-    // console.log(payload[key])
+    console.log(payload[key])
     template.id = payload[key].id
     template.name = payload[key].name
     template.completedDate = payload[key].completedForms[0].completedDate
     template.headline = payload[key].formFields[0].headline
     tableData.push(template)
   }
-  console.log(tableData)
+  console.log('TABLEDATA' + tableData)
   state.tableData = tableData
   state.listOfGridlayouts = payload
+}
+
+// Update row in state after put
+export const storeUpdatRow = (state, payload) => {
+  console.log('I mutations: ' + payload)
+}
+
+// Delete row in state after delete method
+export const storeDeleteRow = (state, id) => {
+  console.log('MUTATION: ' + state.tableData)
 }
 
 // Mutation to remove item from gridLayout.

@@ -28,7 +28,7 @@
             title="Update Name"
             buttons persistent
             label-set="Save"
-            @save="onEdit(props.row)"
+            @save="updateRow(props.row)"
             >
             <q-input
               type="string"
@@ -51,7 +51,7 @@
             buttons
             persistent
             label-set="Save"
-            @save="onEdit(props.row)"
+            @save="updateRow(props.row)"
           >
             <q-input type="string" v-model="props.row.headline" dense autofocus />
           </q-popup-edit>
@@ -61,11 +61,13 @@
 
         <q-td key="trash" :props="props">
           <q-icon
+            v-model="props.row.id"
             name="delete"
             color="negative"
             class="cursor-pointer"
-            @click="deleteRow(props.row)"
+            @click="deleteRow(props.row.id)"
           />
+
         </q-td>
       </q-tr>
       </template>
@@ -99,7 +101,9 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchFormsFromDb'
+      'fetchFormsFromDb',
+      'updateRow',
+      'deleteRow'
     ]),
     onRefresh () {
       const fetchTableData = this.fetchFormsFromDb()
@@ -109,13 +113,6 @@ export default {
           this.data = this.$store.getters.getTableData
           this.loading = false
         })
-    },
-    deleteRow (selectedRow) {
-      console.log(selectedRow.id)
-    },
-    onEdit (selectedRow) {
-      console.log(selectedRow)
-      console.log(selectedRow.id)
     }
   },
   computed: {

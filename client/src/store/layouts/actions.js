@@ -79,6 +79,33 @@ export const fetchFormsFromDb = ({ commit }) =>
     })
   })
 
+// Update table row
+export const updateRow = ({ commit }, row) =>
+  new Promise((resolve, reject) => {
+    axios.put(`${baseUrl}/Forms/${row.id}`, { id: row.id, name: row.name, headline: row.headline, completedDate: removeEventListener.completedDate }).then(response => {
+      commit('storeUpdatRow', row)
+      resolve()
+    }).catch(error => {
+      reject(error)
+    })
+  })
+
+// Delete table row
+// For developing
+/* export const deleteRow = ({ commit }, id) => {
+  commit('storeDeleteRow', id)
+} */
+export const deleteRow = ({ commit }, id) =>
+  new Promise((resolve, reject) => {
+    axios.delete(`${baseUrl}/Forms/${id}`).then(response => {
+      console.log('ACTION: ' + id)
+      commit('storeDeleteRow', id)
+      resolve()
+    }).catch(error => {
+      reject(error)
+    })
+  })
+
 // Helper methods for generating and checking random numbers for the id.
 function generateRandomNumber () {
   let generatedNumber = Math.floor(Math.random() * Math.floor(10000000))

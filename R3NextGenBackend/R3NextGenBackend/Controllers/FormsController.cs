@@ -32,7 +32,6 @@ namespace R3NextGenBackend.Controllers
                     .ThenInclude(FormFields => FormFields.Component)
                 .Include(c => c.CompletedForms)
                     .ThenInclude(CompletedForms => CompletedForms.FormFieldValues)
-
                 .ToListAsync();
         }
 
@@ -80,20 +79,68 @@ namespace R3NextGenBackend.Controllers
             return form;
         }
 
+        // PUT api/values/5
+        //[HttpPut("{id}")]
+        //public void Put(long id, [FromBody] Form form)
+        //{
+        //    // Get the row from the database
+        //    var formRow = _context.Form.Find(id);
+        //    // var changedHeadline = _context.FormField.Find(id);
+        //    // var formRow = _context.Form
+        //    //    .Include(form => form.FormFields)
+
+        //    if (formRow != null)
+        //    {
+        //        formRow.Name = form.Name;
+                 
+                
+        //        _context.SaveChanges();
+        //    }
+        //}
+
         // PUT: api/Forms/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutForm(long id, Form form)
         {
+
             if (id != form.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(form).State = EntityState.Modified;
+
+            // _context.Form.First<Form>(f => f.FormFields = id);
+            
+            //var rowToUpdate = await _context.Form
+            //    .Include(a => a.FormFields)
+            //    .FirstOrDefaultAsync(b => b.Id == id);
+
+            //if (rowToUpdate == null)
+            //{
+            //    return NotFound();
+            //}
+
+            // rowToUpdate.Name = form.Name;
+            // rowToUpdate.FormFields = form.FormFields;
+
+            // _context.Update(rowToUpdate);
+
+            //if(await TryUpdateModelAsync<Form>(
+            //    rowToUpdate,
+            //    "",
+            //    i => i.Name, i => i.FormFields.head
+            //    ))
+
+            _context.Update(form); // .State = EntityState.Modified; // _context.UpdateRange(form); Entry
+            
+            // _context.Entry(form.FormFields).State = EntityState.Modified;
+            // var formRow = _context.Form.Find(id);
+            // formRow.Name = form.Name;
 
             try
             {
                 await _context.SaveChangesAsync();
+
             }
             catch (DbUpdateConcurrencyException)
             {
