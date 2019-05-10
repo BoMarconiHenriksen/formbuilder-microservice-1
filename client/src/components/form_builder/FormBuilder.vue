@@ -4,8 +4,9 @@
 
       <div class="q-pa-md q-gutter-sm">
 
-      <q-btn color="white" text-color="black" label="Input Felt" @click="addInputFieldToGrid" />
+      <q-btn class="float-left" color="white" text-color="black" label="Input Felt" @click="addInputFieldToGrid" />
 
+      <br>
       </div>
       <!-- :layout: "getLayoutData" -->
       <grid-layout
@@ -119,5 +120,10 @@ export default {
 
 .vue-grid-item .add {
   cursor: pointer;
+}
+
+.float-left {
+   float:left;
+   margin-right: 15px;
 }
 </style>
