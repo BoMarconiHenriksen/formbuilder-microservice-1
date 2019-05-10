@@ -109,12 +109,12 @@ namespace R3NextGenBackend.Controllers
             }
 
 
-            // _context.Form.First<Form>(f => f.FormFields = id);
-            
-            var rowToUpdate = await _context.Form
-                .Include(f => f.FormFields)
-                .FirstOrDefaultAsync(FormFields => FormFields.Id == id)
-                ;
+            // await _context.Form.First<Form>(f => f.FormFields == id);
+
+            //var rowToUpdate = await _context.Form
+            //    .Include(f => f.FormFields)
+            //    .FirstOrDefaultAsync(FormFields => FormFields.Id == id)
+            //    ;
 
             //if (rowToUpdate == null)
             //{
@@ -124,7 +124,7 @@ namespace R3NextGenBackend.Controllers
             // rowToUpdate.Name = form.Name;
             // rowToUpdate.FormFields = form.FormFields;
 
-            _context.Update(rowToUpdate);
+            // _context.Update(rowToUpdate);
 
             //if(await TryUpdateModelAsync<Form>(
             //    rowToUpdate,
@@ -132,7 +132,7 @@ namespace R3NextGenBackend.Controllers
             //    i => i.Name, i => i.FormFields.head
             //    ))
 
-            // _context.Update(form); // .State = EntityState.Modified; // _context.UpdateRange(form); Entry
+            _context.Update(form); // .State = EntityState.Modified; // _context.UpdateRange(form); Entry
             
             // _context.Entry(form.FormFields).State = EntityState.Modified;
             // var formRow = _context.Form.Find(id);
