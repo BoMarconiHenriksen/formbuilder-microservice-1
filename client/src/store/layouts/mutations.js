@@ -28,9 +28,14 @@ export const getListOfGridItems = (state, payload) => {
   state.listOfGridlayouts = payload
 }
 
-// Update row in state after put
+// Update row in state after put in action
+// The method is not needed because the store is updated when the component rerender
 export const storeUpdatRow = (state, payload) => {
-  console.log('I mutations: ' + payload)
+  const tableData = state.tableData.filter((row) => row.id === payload.id)
+  if (tableData.length === 1) {
+    tableData[0].name = payload.name
+    tableData[0].headline = payload.headline
+  }
 }
 
 // Delete row in state after delete action
