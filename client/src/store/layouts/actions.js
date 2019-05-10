@@ -79,7 +79,7 @@ export const fetchFormsFromDb = ({ commit }) =>
     })
   })
 
-// Update table row
+// Update table row in database
 export const updateRow = ({ commit }, row) =>
   new Promise((resolve, reject) => {
     axios.put(`${baseUrl}/Forms/${row.id}`, { id: row.id, name: row.name, headline: row.headline, completedDate: removeEventListener.completedDate }).then(response => {
@@ -90,7 +90,7 @@ export const updateRow = ({ commit }, row) =>
     })
   })
 
-// Delete table row
+// Delete table row in database
 export const deleteRow = ({ commit }, id) =>
   new Promise((resolve, reject) => {
     axios.delete(`${baseUrl}/Forms/${id}`).then(response => {

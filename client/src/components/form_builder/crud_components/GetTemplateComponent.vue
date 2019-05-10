@@ -7,7 +7,7 @@
 
     <q-table
       :loading="loading"
-      title="All Templates"
+      title="Alle Skabeloner"
       :data="data"
       :columns="columns"
       row-key="id"
@@ -22,7 +22,14 @@
           <q-icon
             class="cursor-pointer"
             name="edit"
-          />
+          >
+            <q-tooltip
+            transition-show="scale"
+            transition-hide="scale"
+            >
+              Rediger navnet på skabelonen.
+            </q-tooltip>
+          </q-icon>
           <q-popup-edit
             v-model="props.row.name"
             title="Update Name"
@@ -43,7 +50,14 @@
             <q-icon
               class="cursor-pointer"
               name="edit"
-            />
+            >
+              <q-tooltip
+              transition-show="scale"
+              transition-hide="scale"
+              >
+              Rediger overskriften på input feltet.
+              </q-tooltip>
+            </q-icon>
           </div>
           <q-popup-edit
             v-model="props.row.headline"
@@ -66,7 +80,14 @@
             color="negative"
             class="cursor-pointer"
             @click="deleteRow(props.row.id)"
-          />
+          >
+            <q-tooltip
+              transition-show="scale"
+              transition-hide="scale"
+            >
+              Slet skabelonen.
+            </q-tooltip>
+          </q-icon>
 
         </q-td>
       </q-tr>
@@ -89,9 +110,9 @@ export default {
       data: this.getTableData,
       columns: [
         { name: 'id', label: 'Id', align: 'left', field: 'id', sortable: true, required: true },
-        { name: 'name', label: 'Name', align: 'left', field: 'name', sortable: true, required: true },
-        { name: 'headline', label: 'headline', align: 'left', field: 'headline', sortable: true },
-        { name: 'completedDate', label: 'Completed Date', align: 'left', field: 'completedDate', sortable: true, required: true },
+        { name: 'name', label: 'Navn', align: 'left', field: 'name', sortable: true, required: true },
+        { name: 'headline', label: 'Overskrift', align: 'left', field: 'headline', sortable: true },
+        { name: 'completedDate', label: 'Sidst Redigeret', align: 'left', field: 'completedDate', sortable: true, required: true },
         { name: 'trash', align: 'left' }
       ]
     }
