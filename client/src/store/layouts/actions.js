@@ -91,14 +91,9 @@ export const updateRow = ({ commit }, row) =>
   })
 
 // Delete table row
-// For developing
-/* export const deleteRow = ({ commit }, id) => {
-  commit('storeDeleteRow', id)
-} */
 export const deleteRow = ({ commit }, id) =>
   new Promise((resolve, reject) => {
     axios.delete(`${baseUrl}/Forms/${id}`).then(response => {
-      console.log('ACTION: ' + id)
       commit('storeDeleteRow', id)
       resolve()
     }).catch(error => {

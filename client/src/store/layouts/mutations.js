@@ -33,9 +33,12 @@ export const storeUpdatRow = (state, payload) => {
   console.log('I mutations: ' + payload)
 }
 
-// Delete row in state after delete method
+// Delete row in state after delete action
 export const storeDeleteRow = (state, id) => {
-  console.log('MUTATION: ' + state.tableData)
+  let tableData = state.tableData.filter((row) => row.id === id)
+  if (tableData.length === 1) {
+    state.tableData.splice(state.tableData.indexOf(tableData[0]), 1)
+  }
 }
 
 // Mutation to remove item from gridLayout.
