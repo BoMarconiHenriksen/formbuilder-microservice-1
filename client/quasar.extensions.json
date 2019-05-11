@@ -2,10 +2,13 @@
   "@quasar/testing-unit-jest": {
     "babel": "babelrc",
     "options": [
-      "SFC"
+      "scripts",
+      "SFC",
+      "wallabyjs",
+      "majestic"
     ]
   },
-  "@quasar/testing-e2e-cypress": {
+  "@quasar/testing-e2e-webdriver": {
     "options": [
       "scripts"
     ]
@@ -13,7 +16,7 @@
   "@quasar/testing": {
     "harnesses": [
       "unit-jest",
-      "e2e-cypress"
+      "e2e-webdriver"
     ]
   }
 }

@@ -22,8 +22,9 @@ module.exports = function (ctx) {
       // 'eva-icons'
     ],
 
-    // framework: 'all', // --- includes everything; for dev only!
     framework: {
+      // all: true, // --- includes everything; for dev only!
+
       components: [
         'QLayout',
         'QHeader',
@@ -60,9 +61,7 @@ module.exports = function (ctx) {
       ],
 
       directives: [
-        'Ripple',
-        'CloseDialog',
-        'CloseMenu'
+        'Ripple'
       ],
 
       // Quasar plugins
@@ -78,7 +77,7 @@ module.exports = function (ctx) {
 
     build: {
       scopeHoisting: true,
-      vueRouterMode: 'history',
+      // vueRouterMode: 'history',
       // vueCompiler: true,
       // gzip: true,
       // analyze: true,
@@ -96,10 +95,10 @@ module.exports = function (ctx) {
     devServer: {
       // https: true,
       // port: 8080,
-      open: false // opens browser window automatically
+      open: true // opens browser window automatically
     },
 
-    // animations: 'all' --- includes all animations
+    // animations: 'all', // --- includes all animations
     animations: [],
 
     ssr: {
@@ -108,7 +107,7 @@ module.exports = function (ctx) {
 
     pwa: {
       // workboxPluginMode: 'InjectManifest',
-      // workboxOptions: {},
+      // workboxOptions: {}, // only for NON InjectManifest
       manifest: {
         // name: 'Quasar App',
         // short_name: 'Quasar-PWA',
@@ -149,13 +148,17 @@ module.exports = function (ctx) {
 
     cordova: {
       // id: 'org.cordova.quasar.app'
+      // noIosLegacyBuildFlag: true // uncomment only if you know what you are doing
     },
 
     electron: {
       // bundler: 'builder', // or 'packager'
+
       extendWebpack (cfg) {
-        // do something with Electron process Webpack cfg
+        // do something with Electron main process Webpack cfg
+        // chainWebpack also available besides this extendWebpack
       },
+
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
 
@@ -168,6 +171,7 @@ module.exports = function (ctx) {
         // Window only
         // win32metadata: { ... }
       },
+
       builder: {
         // https://www.electron.build/configuration/configuration
 
