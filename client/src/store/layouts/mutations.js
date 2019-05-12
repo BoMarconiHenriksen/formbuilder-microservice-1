@@ -8,6 +8,7 @@ export const saveLayout = (state, initialLayoutData) => {
 export const setNewGridItem = (state, inputFieldLayout) => {
   console.log(inputFieldLayout)
   state.gridLayout.push(inputFieldLayout)
+  console.log(state.gridLayout)
 }
 
 // List of templates from backend.
