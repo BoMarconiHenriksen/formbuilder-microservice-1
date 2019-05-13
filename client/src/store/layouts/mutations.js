@@ -13,20 +13,25 @@ export const setNewGridItem = (state, inputFieldLayout) => {
 
 // List of templates from backend.
 export const getListOfGridItems = (state, payload) => {
-  console.log('MUTATIONS PAYLOAD' + payload)
+  console.log('paykload')
+  console.log(payload)
   let tableData = [ ]
   for (let key in payload) {
     const template = { }
+    console.log('getListOfGridItems')
     console.log(payload[key])
     template.id = payload[key].id
     template.name = payload[key].name
     template.completedDate = payload[key].completedForms[0].completedDate
     template.headline = payload[key].formFields[0].headline
+    template.indexFromFetch = key
+    console.log('MUTATIONS: ')
+    console.log(template)
     tableData.push(template)
   }
   console.log('TABLEDATA' + tableData)
   state.tableData = tableData
-  state.listOfGridlayouts = payload
+  state.fetchedGridlayouts = payload
 }
 
 // Update row in state after put in action

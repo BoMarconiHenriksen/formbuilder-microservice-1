@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import state from '../layouts/state'
 const baseUrl = 'https://localhost:5001/api'
 
 import initialLayoutData from '../../assets/savedLayouts/demo.json'
@@ -72,6 +72,8 @@ export const updateLockOnComponent = ({ commit }, payload) => {
 export const fetchFormsFromDb = ({ commit }) =>
   new Promise((resolve, reject) => {
     axios.get(`${baseUrl}/Forms/`).then(response => {
+      console.log('FETCH:')
+      console.log(JSON.stringify(response.data))
       commit('getListOfGridItems', response.data)
       resolve()
     }).catch(error => {
@@ -82,7 +84,25 @@ export const fetchFormsFromDb = ({ commit }) =>
 // Update table row in database
 export const updateRow = ({ commit }, row) =>
   new Promise((resolve, reject) => {
-    axios.put(`${baseUrl}/Forms/${row.id}`, { id: row.id, name: row.name, headline: row.headline, completedDate: removeEventListener.completedDate }).then(response => {
+    console.log('ROW')
+    console.log(row)
+    var updateTableData = getInitialTableFetch()
+    console.log('BEFORE UPDATE')
+    console.log(updateTableData)
+
+    var rowToSend = updateTableData[row.indexFromFetch]
+    console.log('ROWTOSEND')
+    console.log(rowToSend)
+
+    updateTableData[0].name = row.name
+    updateTableData[0].formFields[0].headline = row.headline
+    updateTableData[0].completedForms[0].completedDate = row.completedDate
+    console.log('Efter update')
+    console.log(updateTableData)
+
+    axios.put(`${baseUrl}/Forms/${row.id}`, updateTableData[0]).then(response => {
+      console.log('AFTER COMMIT')
+      console.log(updateTableData)
       commit('storeUpdatRow', row)
       resolve()
     }).catch(error => {
@@ -105,4 +125,10 @@ export const deleteRow = ({ commit }, id) =>
 function generateRandomNumber () {
   let generatedNumber = Math.floor(Math.random() * Math.floor(10000000))
   return generatedNumber
+}
+
+// Helper method that get the state of the initial fetch
+function getInitialTableFetch () {
+  let fetchedGridlayouts = state.fetchedGridlayouts
+  return fetchedGridlayouts
 }

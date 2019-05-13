@@ -3,8 +3,13 @@ export const getLayoutData = (state) => {
   return state.gridLayout
 }
 
-// Get the state of the grid layout list.
+// Get the state of the grid layout list got the table.
 export const getTableData = (state) => {
-  console.log('i getters: ' + state.tableData)
   return state.tableData
+}
+
+// Get the state of the fetched grid layout list.
+export const getFetchedGridlayouts = (state) => {
+  console.log('GETTERS: ' + state.fetchedGridlayouts)
+  return state.fetchedGridlayouts
 }

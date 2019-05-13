@@ -1,5 +1,5 @@
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/boot/axios.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\boot\axios.js
 FN:3,(anonymous_0)
 FNF:1
 FNH:0
@@ -11,7 +11,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/boot/i18n.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\boot\i18n.js
 FN:4,(anonymous_0)
 FNF:1
 FNH:0
@@ -24,7 +24,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/components/form_builder/FormBuilder.vue
+SF:C:\Users\bh\formbuilder-microservice\client\src\components\form_builder\FormBuilder.vue
 FN:67,data
 FNF:1
 FNH:0
@@ -41,7 +41,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/components/form_builder/crud_components/GetTemplateComponent.vue
+SF:C:\Users\bh\formbuilder-microservice\client\src\components\form_builder\crud_components\GetTemplateComponent.vue
 FN:106,data
 FN:120,created
 FN:129,onRefresh
@@ -66,7 +66,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/components/form_builder/helper_components/DeleteAlert.vue
+SF:C:\Users\bh\formbuilder-microservice\client\src\components\form_builder\helper_components\DeleteAlert.vue
 FN:40,data
 FN:49,removeItemAndClosePopup
 FNF:2
@@ -84,7 +84,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/components/form_builder/helper_components/LockComponent.vue
+SF:C:\Users\bh\formbuilder-microservice\client\src\components\form_builder\helper_components\LockComponent.vue
 FN:21,data
 FNF:1
 FNH:0
@@ -97,7 +97,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/components/form_builder/widgets/InputFieldComponent.vue
+SF:C:\Users\bh\formbuilder-microservice\client\src\components\form_builder\widgets\InputFieldComponent.vue
 FN:39,data
 FN:49,save
 FNF:2
@@ -115,7 +115,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/i18n/index.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\i18n\index.js
 FNF:0
 FNH:0
 LF:0
@@ -124,7 +124,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/i18n/en-us/index.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\i18n\en-us\index.js
 FNF:0
 FNH:0
 LF:0
@@ -133,7 +133,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/layouts/ConfigurationLayout.vue
+SF:C:\Users\bh\formbuilder-microservice\client\src\layouts\ConfigurationLayout.vue
 FN:23,data
 FNF:1
 FNH:0
@@ -146,7 +146,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/layouts/DefaultLayout.vue
+SF:C:\Users\bh\formbuilder-microservice\client\src\layouts\DefaultLayout.vue
 FN:21,data
 FNF:1
 FNH:0
@@ -159,7 +159,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/pages/configuration/LogTemplate.vue
+SF:C:\Users\bh\formbuilder-microservice\client\src\pages\configuration\LogTemplate.vue
 FNF:0
 FNH:0
 DA:12,0
@@ -170,7 +170,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/router/index.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\router\index.js
 FN:13,(anonymous_0)
 FN:15,(anonymous_1)
 FNF:2
@@ -187,7 +187,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/router/routes.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\router\routes.js
 FN:5,(anonymous_0)
 FN:7,(anonymous_1)
 FN:8,(anonymous_2)
@@ -228,7 +228,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/store/index.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\store\index.js
 FN:15,(anonymous_0)
 FNF:1
 FNH:0
@@ -242,7 +242,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/store/layouts/actions.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\store\layouts\actions.js
 FN:11,(anonymous_0)
 FN:18,(anonymous_1)
 FN:57,(anonymous_2)
@@ -334,7 +334,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/store/layouts/getters.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\store\layouts\getters.js
 FN:2,(anonymous_0)
 FN:7,(anonymous_1)
 FNF:2
@@ -352,7 +352,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/store/layouts/index.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\store\layouts\index.js
 FNF:0
 FNH:0
 LF:0
@@ -361,7 +361,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/store/layouts/mutations.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\store\layouts\mutations.js
 FN:3,(anonymous_0)
 FN:8,(anonymous_1)
 FN:15,(anonymous_2)
@@ -437,7 +437,7 @@ BRF:8
 BRH:1
 end_of_record
 TN:
-SF:/home/bo/formbuilder-microservice/client/src/store/layouts/state.js
+SF:C:\Users\bh\formbuilder-microservice\client\src\store\layouts\state.js
 FNF:0
 FNH:0
 LF:0

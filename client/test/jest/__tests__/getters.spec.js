@@ -5,13 +5,13 @@ import { getLayoutData, getTableData } from '../../../src/store/layouts/getters'
 describe('getters', () => {
     test('getLayoutData, gets the grid layout from State.gridLayout.', () => {
         const gridLayout = [
-            { 'x': 0, 'y': 0, 'w': 2, 'h': 2, 'i': 1, 'component': 'appInputFieldComponent', 'isComponent': true, 'content': '', 'static': false }, 
+            { 'x': 0, 'y': 0, 'w': 2, 'h': 2, 'i': 1, 'component': 'appInputFieldComponent', 'isComponent': true, 'content': '', 'static': false },
             { 'x': 1, 'y': 1, 'w': 4, 'h': 4, 'i': 2, 'component': 'appInputFieldComponent', 'isComponent': true, 'content': '', 'static': false }
         ]
-        
+
         /* Create a fake state object */
         const state = {
-            gridLayout: [ 
+            gridLayout: [
                 { 'x': 0, 'y': 0, 'w': 2, 'h': 2, 'i': 1, 'component': 'appInputFieldComponent', 'isComponent': true, 'content': '', 'static': false },
                 { 'x': 1, 'y': 1, 'w': 4, 'h': 4, 'i': 2, 'component': 'appInputFieldComponent', 'isComponent': true, 'content': '', 'static': false }
             ]
@@ -29,15 +29,15 @@ describe('getters', () => {
 describe('mutations', () => {
     test('getTableData, get tableData from State.tableData.', () => {
 
-        const tableData = [ 
-            { id: 1, name: 'Brand', headline: 'Hvor brander det?', data: '29-11-1999' }, 
+        const tableData = [
+            { id: 1, name: 'Brand', headline: 'Hvor brander det?', data: '29-11-1999' },
             { id: 2, name: 'Bil uheld', headline: 'Skal der bestilles fejeblad?', data: '19-01-1999' }
         ]
-        
+
         /* Create a fake state object */
         const state = {
-            tableData: [ 
-                { id: 1, name: 'Brand', headline: 'Hvor brander det?', data: '29-11-1999' }, 
+            tableData: [
+                { id: 1, name: 'Brand', headline: 'Hvor brander det?', data: '29-11-1999' },
                 { id: 2, name: 'Bil uheld', headline: 'Skal der bestilles fejeblad?', data: '19-01-1999' }
             ]
         }

@@ -26,45 +26,22 @@ namespace R3NextGenBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Form>>> GetForm()
         {
-            //return await _context.Form.ToListAsync();
-            return await _context.Form
+            var list = _context.Form
                 .Include(form => form.FormFields)
                     .ThenInclude(FormFields => FormFields.Component)
                 .Include(c => c.CompletedForms)
                     .ThenInclude(CompletedForms => CompletedForms.FormFieldValues)
                 .ToListAsync();
+            return await list;
+            //return await _context.Form
+            //    .Include(form => form.FormFields)
+            //        .ThenInclude(FormFields => FormFields.Component)
+            //    .Include(c => c.CompletedForms)
+            //        .ThenInclude(CompletedForms => CompletedForms.FormFieldValues)
+            //    .ToListAsync();
         }
 
-        // Henter kun de informationer vi skal bruge
-        // GET: api/Forms
-        // [HttpGet]
-        //public async Task<ActionResult<IEnumerable<Form>>> GetForm()
-        //{
-        //    return await _context.Form
-        //        .Include(form => form.FormFields)
-        //            .ThenInclude(FormFields => FormFields.Select(a => a.Headline))
-        //        // .Include(CompletedForms => CompletedForms.CompletedForms.Select(b => b.CompletedDate))
-        //        .ToListAsync();
-        //}
-
-        // Get form name and id and show the names in a dropdown list.
-        // Get form based on id and show the form on the formbuilder.
-        // Create a form, give it a name and save it.
-
-        // GET: api/Forms/all
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Form>>> GetForm()
-        //{
-        //var formItems = _context.Form
-        //    .Include(form => form.FormFields)
-
-        //    .FirstOrDefaultAsync();
-
-        //return await formItems.ToListAsync();
-        //return await _context.Form.Include(f => f.FormFields).ToListAsync();
-        //}
-
-        // GET: api/Forms/5
+         // GET: api/Forms/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Form>> GetForm(long id)
         {
@@ -103,37 +80,45 @@ namespace R3NextGenBackend.Controllers
         public async Task<IActionResult> PutForm(long id, Form form)
         {
 
-            if (id != form.Id)
-            {
-                return BadRequest();
-            }
+            //if (id != form.Id)
+            //{
+            //    return BadRequest();
+            //}
 
 
             // await _context.Form.First<Form>(f => f.FormFields == id);
 
-            //var rowToUpdate = await _context.Form
-            //    .Include(f => f.FormFields)
-            //    .FirstOrDefaultAsync(FormFields => FormFields.Id == id)
-            //    ;
+            var rowToUpdate = await _context.Form
+                .Include(f => f.FormFields)
+                    .ThenInclude(FormFields => FormFields.Component)
+                .Include(a => a.CompletedForms)
+                    .ThenInclude(CompletedForms => CompletedForms.FormFieldValues)
+                .FirstOrDefaultAsync(FormFields => FormFields.Id == id);
 
-            //if (rowToUpdate == null)
-            //{
-            //    return NotFound();
-            //}
+            //var rowToUpdate = _context.Form
+            //    .Include(f => f.FormFields).FirstOrDefault(f => f.Id == id);
 
-            // rowToUpdate.Name = form.Name;
-            // rowToUpdate.FormFields = form.FormFields;
+            //var formFields = _context.FormField.Where(ff => ff.FormId == id).ToList();
 
-            // _context.Update(rowToUpdate);
+                //rowToUpdate.Name = form.Name;
+                // rowToUpdate.FormFields = form.FormFields;
 
-            //if(await TryUpdateModelAsync<Form>(
-            //    rowToUpdate,
-            //    "",
-            //    i => i.Name, i => i.FormFields.head
-            //    ))
+                //rowToUpdate.FormFields = form.FormFields;
 
-            _context.Update(form); // .State = EntityState.Modified; // _context.UpdateRange(form); Entry
-            
+                //foreach(var field in rowToUpdate.FormFields)
+                //{
+
+                //}
+
+                _context.Update(rowToUpdate);
+            //_context.Entry(rowToUpdate).CurrentValues.SetValues(form);
+                                   
+            //_context.Update(form).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            //_context.Update(form).State = EntityState.Modified;
+            // _context.Update(form); // .State = EntityState.Modified; // _context.UpdateRange(form); Entry
+
             // _context.Entry(form.FormFields).State = EntityState.Modified;
             // var formRow = _context.Form.Find(id);
             // formRow.Name = form.Name;
