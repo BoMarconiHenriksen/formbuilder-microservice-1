@@ -80,48 +80,41 @@ namespace R3NextGenBackend.Controllers
         public async Task<IActionResult> PutForm(long id, Form form)
         {
 
-            //if (id != form.Id)
+            if (id != form.Id)
+            {
+                return BadRequest();
+            }
+
+
+            // Edit Form table
+            _context.Entry(form).State = EntityState.Modified;
+
+            // Edit headline in FormFields
+            foreach (var f in form.FormFields)
+            {
+                _context.Entry(f).State = EntityState.Modified;
+            }
+
+            // Edit headline in FormFields
+            // form.FormFields.ToList().ForEach(f => _context.Entry(f).State = EntityState.Modified);
+
+            // Edit headline in FormFields
+            //var dbentity = _context.Form.Find(id);
+
+            //if (dbentity != null)
             //{
-            //    return BadRequest();
+            //    dbentity.Name = form.Name;
+
+            //    foreach (var f in dbentity.FormFields)
+            //    {
+            //        var incomingFf = form.FormFields.SingleOrDefault(ef => ef.Id == f.Id);
+
+            //        if (incomingFf != null)
+            //        {
+            //            f.Headline = incomingFf.Headline;
+            //        }
+            //    }
             //}
-
-
-            // await _context.Form.First<Form>(f => f.FormFields == id);
-
-            var rowToUpdate = await _context.Form
-                .Include(f => f.FormFields)
-                    .ThenInclude(FormFields => FormFields.Component)
-                .Include(a => a.CompletedForms)
-                    .ThenInclude(CompletedForms => CompletedForms.FormFieldValues)
-                .FirstOrDefaultAsync(FormFields => FormFields.Id == id);
-
-            //var rowToUpdate = _context.Form
-            //    .Include(f => f.FormFields).FirstOrDefault(f => f.Id == id);
-
-            //var formFields = _context.FormField.Where(ff => ff.FormId == id).ToList();
-
-                //rowToUpdate.Name = form.Name;
-                // rowToUpdate.FormFields = form.FormFields;
-
-                //rowToUpdate.FormFields = form.FormFields;
-
-                //foreach(var field in rowToUpdate.FormFields)
-                //{
-
-                //}
-
-                _context.Update(rowToUpdate);
-            //_context.Entry(rowToUpdate).CurrentValues.SetValues(form);
-                                   
-            //_context.Update(form).State = EntityState.Modified;
-            _context.SaveChanges();
-
-            //_context.Update(form).State = EntityState.Modified;
-            // _context.Update(form); // .State = EntityState.Modified; // _context.UpdateRange(form); Entry
-
-            // _context.Entry(form.FormFields).State = EntityState.Modified;
-            // var formRow = _context.Form.Find(id);
-            // formRow.Name = form.Name;
 
             try
             {
@@ -147,6 +140,11 @@ namespace R3NextGenBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<Form>> PostForm(Form form)
         {
+            if (form.Name == null)
+            {
+                return BadRequest();
+            }
+
             _context.Form.Add(form);
             await _context.SaveChangesAsync();
 

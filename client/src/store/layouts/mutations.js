@@ -34,6 +34,11 @@ export const getListOfGridItems = (state, payload) => {
   state.fetchedGridlayouts = payload
 }
 
+// Update table after a post
+export const updateTableAfterPost = (state, template) => {
+  console.log(template)
+}
+
 // Update row in state after put in action
 // The method is not needed because the store is updated when the component rerender
 export const storeUpdatRow = (state, payload) => {

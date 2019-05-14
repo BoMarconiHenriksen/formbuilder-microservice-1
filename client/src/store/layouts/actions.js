@@ -110,6 +110,21 @@ export const updateRow = ({ commit }, row) =>
     })
   })
 
+// Update table row in database
+export const postTemplate = ({ commit }, template) =>
+  new Promise((resolve, reject) => {
+    console.log('BEFORE POST')
+    console.log(template)
+    axios.post(`${baseUrl}/Forms/`).then(response => {
+      console.log('AFTER COMMIT')
+      console.log(template)
+      commit('updateTableAfterPost', template)
+      resolve()
+    }).catch(error => {
+      reject(error)
+    })
+  })
+
 // Delete table row in database
 export const deleteRow = ({ commit }, id) =>
   new Promise((resolve, reject) => {

@@ -40,43 +40,50 @@ namespace R3NextGenBackend.Migrations
                     b.HasData(
                         new
                         {
+                            Id = 1L,
+                            CompletedDate = new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            FormId = 1L,
+                            UserId = 1L
+                        },
+                        new
+                        {
                             Id = 2L,
-                            CompletedDate = new DateTime(2019, 5, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 2L,
                             UserId = 2L
                         },
                         new
                         {
                             Id = 3L,
-                            CompletedDate = new DateTime(2019, 5, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 3L,
                             UserId = 3L
                         },
                         new
                         {
                             Id = 4L,
-                            CompletedDate = new DateTime(2019, 5, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 4L,
                             UserId = 1L
                         },
                         new
                         {
                             Id = 5L,
-                            CompletedDate = new DateTime(2019, 5, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 5L,
                             UserId = 2L
                         },
                         new
                         {
                             Id = 6L,
-                            CompletedDate = new DateTime(2019, 5, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 6L,
                             UserId = 1L
                         },
                         new
                         {
                             Id = 7L,
-                            CompletedDate = new DateTime(2019, 5, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 7L,
                             UserId = 1L
                         });
@@ -101,6 +108,12 @@ namespace R3NextGenBackend.Migrations
                     b.ToTable("Component");
 
                     b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            ComponentName = "appInputFieldComponent",
+                            FormFieldId = 1L
+                        },
                         new
                         {
                             Id = 2L,
@@ -152,6 +165,11 @@ namespace R3NextGenBackend.Migrations
                     b.ToTable("Form");
 
                     b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "Brand"
+                        },
                         new
                         {
                             Id = 2L,
@@ -211,6 +229,17 @@ namespace R3NextGenBackend.Migrations
                     b.ToTable("FormField");
 
                     b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Column = 3,
+                            FormId = 1L,
+                            Headline = "Indtast Dit Navn",
+                            Height = 3,
+                            Row = 3,
+                            Static = false,
+                            Width = 3
+                        },
                         new
                         {
                             Id = 2L,
@@ -305,6 +334,13 @@ namespace R3NextGenBackend.Migrations
                     b.ToTable("FormFieldValue");
 
                     b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CompletedFormId = 1L,
+                            FormFieldId = 1L,
+                            Value = "Dette er valuen"
+                        },
                         new
                         {
                             Id = 2L,

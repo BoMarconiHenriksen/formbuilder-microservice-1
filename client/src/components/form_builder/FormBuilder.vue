@@ -44,6 +44,11 @@
          </grid-item>
       </grid-layout>
 
+      <br>
+      <q-input outlined v-model="templateName" label="Skabelon Navn" style="width: 150px" />
+      <br>
+      <q-btn class="float-left" color="white" text-color="black" label="Gem Skabelonen" @click="addTemplate" />
+
       <appGetTemplateComponent />
 
    </q-page>
@@ -66,19 +71,51 @@ export default {
   },
   data () {
     return {
-
+      templateName: ''
     }
   },
   methods: {
     ...mapActions([
       'addInputFieldToGrid',
       'editLabel',
-      'fetchFormsFromDb'
-    ])
+      'fetchFormsFromDb',
+      'postTemplate'
+    ]),
+    addTemplate () {
+      let templateName = this.templateName
+      let layoutFromFormBuilder = this.getLayoutData
+      /* console.log('layoutData')
+      console.log(layoutFromFormBuilder) */
+      let a = this.getFetchedGridlayouts
+      console.log('FETCHED GRID')
+      console.log(a)
+      let templateToAdd = { id: null, name: '', completedForms: [{ completedDate: null }], formFields: [{ column: null, component: { componentName: '' }, headline: '', height: null, row: null, static: null, width: null }] }
+
+      templateToAdd.name = templateName
+      templateToAdd.formFields[0].column = layoutFromFormBuilder[0].x
+      templateToAdd.formFields[0].headline = layoutFromFormBuilder[0].inputFieldHeader
+      templateToAdd.formFields[0].height = layoutFromFormBuilder[0].h
+      templateToAdd.formFields[0].row = layoutFromFormBuilder[0].y
+      templateToAdd.formFields[0].static = layoutFromFormBuilder[0].static
+      templateToAdd.formFields[0].width = layoutFromFormBuilder[0].w
+      templateToAdd.formFields[0].component.componentName = layoutFromFormBuilder[0].component
+
+      let today = new Date().toJSON().slice(0, 10).replace(/-/g, '/')
+      templateToAdd.completedForms[0].completedDate = today
+
+      this.postTemplate(templateToAdd)
+
+      /* console.log('templateToAdd')
+      console.log(templateToAdd)
+
+      console.log('gridLayout')
+      console.log(layoutFromFormBuilder) */
+    }
   },
   computed: {
     ...mapGetters([
-      'getLayoutData'
+      'getLayoutData',
+      'getFetchedGridlayouts'
     ])
   }
 }
