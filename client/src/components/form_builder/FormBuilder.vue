@@ -89,7 +89,7 @@ export default {
       let a = this.getFetchedGridlayouts
       console.log('FETCHED GRID')
       console.log(a)
-      let templateToAdd = { id: null, name: '', completedForms: [{ completedDate: null }], formFields: [{ column: null, component: { componentName: '' }, headline: '', height: null, row: null, static: null, width: null }] }
+      let templateToAdd = { name: '', completedForms: [{ completedDate: null, formFieldValues: [{ value: '' }] }], formFields: [{ id: 0, column: null, component: { id: 0, componentName: '', formFieldId: 0 }, headline: '', height: null, row: null, static: null, width: null, formFieldValues: [] }] }
 
       templateToAdd.name = templateName
       templateToAdd.formFields[0].column = layoutFromFormBuilder[0].x
@@ -105,10 +105,10 @@ export default {
 
       this.postTemplate(templateToAdd)
 
-      /* console.log('templateToAdd')
+      console.log('templateToAdd')
       console.log(templateToAdd)
 
-      console.log('gridLayout')
+      /* console.log('gridLayout')
       console.log(layoutFromFormBuilder) */
     }
   },

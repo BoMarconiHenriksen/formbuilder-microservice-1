@@ -140,13 +140,13 @@ namespace R3NextGenBackend.Migrations
                 columns: new[] { "Id", "CompletedDate", "FormId", "UserId" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local), 1L, 1L },
-                    { 2L, new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local), 2L, 2L },
-                    { 3L, new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local), 3L, 3L },
-                    { 4L, new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local), 4L, 1L },
-                    { 5L, new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local), 5L, 2L },
-                    { 6L, new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local), 6L, 1L },
-                    { 7L, new DateTime(2019, 5, 14, 0, 0, 0, 0, DateTimeKind.Local), 7L, 1L }
+                    { 1L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 1L, 1L },
+                    { 2L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 2L, 2L },
+                    { 3L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 3L, 3L },
+                    { 4L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 4L, 1L },
+                    { 5L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 5L, 2L },
+                    { 6L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 6L, 1L },
+                    { 7L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 7L, 1L }
                 });
 
             migrationBuilder.InsertData(

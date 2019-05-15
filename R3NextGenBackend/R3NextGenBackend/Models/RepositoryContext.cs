@@ -39,6 +39,12 @@ namespace R3NextGenBackend
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
+            // Create one to one relationship
+            modelBuilder.Entity<FormField>()
+                .HasOne(a => a.Component)
+                .WithOne(b => b.FormField)
+                .HasForeignKey<Component>(b => b.FormFieldId);
+
             //Seed data 
             modelBuilder.Entity<Form>().HasData(
                 // new Form()

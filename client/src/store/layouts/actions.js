@@ -115,14 +115,15 @@ export const postTemplate = ({ commit }, template) =>
   new Promise((resolve, reject) => {
     console.log('BEFORE POST')
     console.log(template)
-    axios.post(`${baseUrl}/Forms/`).then(response => {
-      console.log('AFTER COMMIT')
-      console.log(template)
-      commit('updateTableAfterPost', template)
-      resolve()
-    }).catch(error => {
-      reject(error)
-    })
+    axios.post(`${baseUrl}/Forms/`, { id: template.id, name: template.name, formFields: template.formFields, completedForms: template.completedForms })
+      .then(response => {
+        console.log('AFTER COMMIT')
+        console.log(template)
+        commit('updateTableAfterPost', template)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
   })
 
 // Delete table row in database

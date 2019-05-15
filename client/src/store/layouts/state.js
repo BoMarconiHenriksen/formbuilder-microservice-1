@@ -4,5 +4,6 @@ export default {
   gridLayout: [ ],
   // The entities that is fetched from the database
   fetchedGridlayouts: [ ],
+  // The data for the table
   tableData: [ ]
 }

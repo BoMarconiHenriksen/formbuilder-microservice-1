@@ -25,8 +25,8 @@ export const getListOfGridItems = (state, payload) => {
     template.completedDate = payload[key].completedForms[0].completedDate
     template.headline = payload[key].formFields[0].headline
     template.indexFromFetch = key
-    console.log('MUTATIONS: ')
-    console.log(template)
+    /* console.log('MUTATIONS: ')
+    console.log(template) */
     tableData.push(template)
   }
   console.log('TABLEDATA' + tableData)
@@ -40,12 +40,12 @@ export const updateTableAfterPost = (state, template) => {
 }
 
 // Update row in state after put in action
-// The method is not needed because the store is updated when the component rerender
 export const storeUpdatRow = (state, payload) => {
   const tableData = state.tableData.filter((row) => row.id === payload.id)
   if (tableData.length === 1) {
     tableData[0].name = payload.name
     tableData[0].headline = payload.headline
+    state.tableData[tableData[0].id] = tableData[0]
   }
 }
 
