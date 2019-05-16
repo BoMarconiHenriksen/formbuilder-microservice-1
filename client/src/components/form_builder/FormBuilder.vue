@@ -9,7 +9,7 @@
       <br>
       </div>
       <!-- :layout: "getLayoutData" -->
-      <grid-layout
+      <grid-layout :key="rerenderKey"
          :layout.sync="getLayoutData"
          :col-num="12"
          :row-height="40"
@@ -71,7 +71,8 @@ export default {
   },
   data () {
     return {
-      templateName: ''
+      templateName: '',
+      rerenderKey: 0
     }
   },
   methods: {
@@ -84,13 +85,10 @@ export default {
     addTemplate () {
       let templateName = this.templateName
       let layoutFromFormBuilder = this.getLayoutData
-      /* console.log('layoutData')
-      console.log(layoutFromFormBuilder) */
-      let a = this.getFetchedGridlayouts
-      console.log('FETCHED GRID')
-      console.log(a)
+
       let templateToAdd = { name: '', completedForms: [{ completedDate: null, formFieldValues: [{ value: '' }] }], formFields: [{ id: 0, column: null, component: { id: 0, componentName: '', formFieldId: 0 }, headline: '', height: null, row: null, static: null, width: null, formFieldValues: [] }] }
 
+      // TODO: See if Grid Layout has mapping between objects
       templateToAdd.name = templateName
       templateToAdd.formFields[0].column = layoutFromFormBuilder[0].x
       templateToAdd.formFields[0].headline = layoutFromFormBuilder[0].inputFieldHeader
@@ -104,12 +102,10 @@ export default {
       templateToAdd.completedForms[0].completedDate = today
 
       this.postTemplate(templateToAdd)
-
-      console.log('templateToAdd')
-      console.log(templateToAdd)
-
-      /* console.log('gridLayout')
-      console.log(layoutFromFormBuilder) */
+      // Clear fields after click
+      this.templateName = ''
+      // Reload the component
+      this.rerenderKey += 1
     }
   },
   computed: {

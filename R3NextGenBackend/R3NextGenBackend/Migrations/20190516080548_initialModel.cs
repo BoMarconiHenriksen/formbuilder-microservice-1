@@ -95,8 +95,7 @@ namespace R3NextGenBackend.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Value = table.Column<string>(maxLength: 25, nullable: true),
                     FormFieldId = table.Column<long>(nullable: false),
-                    CompletedFormId = table.Column<long>(nullable: false),
-                    FormFieldId1 = table.Column<long>(nullable: true)
+                    CompletedFormId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,12 +109,6 @@ namespace R3NextGenBackend.Migrations
                     table.ForeignKey(
                         name: "FK_FormFieldValue_FormField_FormFieldId",
                         column: x => x.FormFieldId,
-                        principalTable: "FormField",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FormFieldValue_FormField_FormFieldId1",
-                        column: x => x.FormFieldId1,
                         principalTable: "FormField",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -140,13 +133,13 @@ namespace R3NextGenBackend.Migrations
                 columns: new[] { "Id", "CompletedDate", "FormId", "UserId" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 1L, 1L },
-                    { 2L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 2L, 2L },
-                    { 3L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 3L, 3L },
-                    { 4L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 4L, 1L },
-                    { 5L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 5L, 2L },
-                    { 6L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 6L, 1L },
-                    { 7L, new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local), 7L, 1L }
+                    { 1L, new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local), 1L, 1L },
+                    { 2L, new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local), 2L, 2L },
+                    { 3L, new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local), 3L, 3L },
+                    { 4L, new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local), 4L, 1L },
+                    { 5L, new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local), 5L, 2L },
+                    { 6L, new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local), 6L, 1L },
+                    { 7L, new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local), 7L, 1L }
                 });
 
             migrationBuilder.InsertData(
@@ -177,20 +170,6 @@ namespace R3NextGenBackend.Migrations
                     { 7L, "appInputFieldComponent", 7L }
                 });
 
-            migrationBuilder.InsertData(
-                table: "FormFieldValue",
-                columns: new[] { "Id", "CompletedFormId", "FormFieldId", "FormFieldId1", "Value" },
-                values: new object[,]
-                {
-                    { 1L, 1L, 1L, null, "Dette er valuen" },
-                    { 2L, 2L, 2L, null, "Dette er valuen" },
-                    { 3L, 3L, 3L, null, "Dette er valuen" },
-                    { 4L, 4L, 4L, null, "Dette er valuen" },
-                    { 5L, 5L, 5L, null, "Dette er valuen" },
-                    { 6L, 6L, 6L, null, "Dette er valuen" },
-                    { 7L, 7L, 7L, null, "Dette er valuen" }
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_CompletedForm_FormId",
                 table: "CompletedForm",
@@ -216,11 +195,6 @@ namespace R3NextGenBackend.Migrations
                 name: "IX_FormFieldValue_FormFieldId",
                 table: "FormFieldValue",
                 column: "FormFieldId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormFieldValue_FormFieldId1",
-                table: "FormFieldValue",
-                column: "FormFieldId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

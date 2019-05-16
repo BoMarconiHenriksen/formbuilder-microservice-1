@@ -3,20 +3,6 @@ import { fetchFormsFromDb } from '../../../src/store/layouts/actions'
 import { fetchListData } from '../__tests__/actionTestHelper/api'
 import flushPromises from 'flush-promises'
 
-jest.mock('axios', () => ({
-    get: jest.fn()
-}))
-
-import { shallowMount } from '@vue/test-utils'
-import axios from 'axios' // axios here is the mock from above!
-
-
-
-it('Calls axios.get', () => {
-cmp.vm.onSubmit('an')
-expect(axios.get).toBeCalledWith('fetchFormsFromDb')
-})
-
 // https://alexjover.com/blog/
 
 // jest.mock('../__tests__/actionTestHelper/api.js')

@@ -1,4 +1,3 @@
-
 // Mutation set layoutData in state for initial run.
 export const saveLayout = (state, initialLayoutData) => {
   state.gridLayout = initialLayoutData
@@ -6,15 +5,11 @@ export const saveLayout = (state, initialLayoutData) => {
 
 // Mutation new basic grid item in gridLayout.
 export const setNewGridItem = (state, inputFieldLayout) => {
-  console.log(inputFieldLayout)
   state.gridLayout.push(inputFieldLayout)
-  console.log(state.gridLayout)
 }
 
 // List of templates from backend.
 export const getListOfGridItems = (state, payload) => {
-  console.log('paykload')
-  console.log(payload)
   let tableData = [ ]
   for (let key in payload) {
     const template = { }
@@ -25,18 +20,25 @@ export const getListOfGridItems = (state, payload) => {
     template.completedDate = payload[key].completedForms[0].completedDate
     template.headline = payload[key].formFields[0].headline
     template.indexFromFetch = key
-    /* console.log('MUTATIONS: ')
-    console.log(template) */
+
     tableData.push(template)
   }
-  console.log('TABLEDATA' + tableData)
   state.tableData = tableData
   state.fetchedGridlayouts = payload
 }
 
 // Update table after a post
 export const updateTableAfterPost = (state, template) => {
+  console.log('MU')
   console.log(template)
+  let id = state.tableData.length + 1
+  let newEntity = [ ]
+  newEntity.completedDate = template.completedForms[0].completedDate
+  newEntity.headline = template.formFields[0].headline
+  newEntity.id = id
+  newEntity.indexFromFetch = id
+  newEntity.name = template.name
+  state.tableData.push(newEntity)
 }
 
 // Update row in state after put in action

@@ -14,8 +14,9 @@ namespace R3NextGenBackend
         public DbSet<Form> Form { get; set; }
         public DbSet<CompletedForm> CompletedForm { get; set; }
         public DbSet<FormField> FormField { get; set; }
+        // public DbSet<FormFieldValue> FormFieldValue { get; set; }
         public DbSet<Component> Component { get; set; }
-        public DbSet<FormFieldValue> FormFieldValue { get; set; }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -44,6 +45,12 @@ namespace R3NextGenBackend
                 .HasOne(a => a.Component)
                 .WithOne(b => b.FormField)
                 .HasForeignKey<Component>(b => b.FormFieldId);
+
+            // Create one to many between FormField and FormFieldValue
+            //modelBuilder.Entity<FormFieldValue>()
+            //        .HasOne<FormField>(a => a.FormField)
+            //        .WithMany(b => b.FormFieldValues)
+            //        .HasForeignKey(c => c.FormFieldId);
 
             //Seed data 
             modelBuilder.Entity<Form>().HasData(
@@ -79,16 +86,16 @@ namespace R3NextGenBackend
                new FormField { Id = 7, Column = 3, Row = 3, Width = 3, Height = 2, Headline = "Hvor skal helikopteren lande?", Static = false, FormId = 7 }
                );
 
-            modelBuilder.Entity<FormFieldValue>().HasData(
-               // new FormFieldValue()
-               new FormFieldValue { Id = 1, Value = "Dette er valuen", FormFieldId = 1, CompletedFormId = 1 },
-               new FormFieldValue { Id = 2, Value = "Dette er valuen", FormFieldId = 2, CompletedFormId = 2 },
-               new FormFieldValue { Id = 3, Value = "Dette er valuen", FormFieldId = 3, CompletedFormId = 3 },
-               new FormFieldValue { Id = 4, Value = "Dette er valuen", FormFieldId = 4, CompletedFormId = 4 },
-               new FormFieldValue { Id = 5, Value = "Dette er valuen", FormFieldId = 5, CompletedFormId = 5 },
-               new FormFieldValue { Id = 6, Value = "Dette er valuen", FormFieldId = 6, CompletedFormId = 6 },
-               new FormFieldValue { Id = 7, Value = "Dette er valuen", FormFieldId = 7, CompletedFormId = 7 }
-               );
+            //modelBuilder.Entity<FormFieldValue>().HasData(
+            //   // new FormFieldValue()
+            //   new FormFieldValue { Id = 1, Value = "Dette er valuen", FormFieldId = 1, CompletedFormId = 1 },
+            //   new FormFieldValue { Id = 2, Value = "Dette er valuen", FormFieldId = 2, CompletedFormId = 2 },
+            //   new FormFieldValue { Id = 3, Value = "Dette er valuen", FormFieldId = 3, CompletedFormId = 3 },
+            //   new FormFieldValue { Id = 4, Value = "Dette er valuen", FormFieldId = 4, CompletedFormId = 4 },
+            //   new FormFieldValue { Id = 5, Value = "Dette er valuen", FormFieldId = 5, CompletedFormId = 5 },
+            //   new FormFieldValue { Id = 6, Value = "Dette er valuen", FormFieldId = 6, CompletedFormId = 6 },
+            //   new FormFieldValue { Id = 7, Value = "Dette er valuen", FormFieldId = 7, CompletedFormId = 7 }
+            //   );
 
             modelBuilder.Entity<Component>().HasData(
                // new Component()

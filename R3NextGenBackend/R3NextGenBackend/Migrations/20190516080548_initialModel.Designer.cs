@@ -10,7 +10,7 @@ using R3NextGenBackend;
 namespace R3NextGenBackend.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20190515100419_initialModel")]
+    [Migration("20190516080548_initialModel")]
     partial class initialModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,49 +43,49 @@ namespace R3NextGenBackend.Migrations
                         new
                         {
                             Id = 1L,
-                            CompletedDate = new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 1L,
                             UserId = 1L
                         },
                         new
                         {
                             Id = 2L,
-                            CompletedDate = new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 2L,
                             UserId = 2L
                         },
                         new
                         {
                             Id = 3L,
-                            CompletedDate = new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 3L,
                             UserId = 3L
                         },
                         new
                         {
                             Id = 4L,
-                            CompletedDate = new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 4L,
                             UserId = 1L
                         },
                         new
                         {
                             Id = 5L,
-                            CompletedDate = new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 5L,
                             UserId = 2L
                         },
                         new
                         {
                             Id = 6L,
-                            CompletedDate = new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 6L,
                             UserId = 1L
                         },
                         new
                         {
                             Id = 7L,
-                            CompletedDate = new DateTime(2019, 5, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 7L,
                             UserId = 1L
                         });
@@ -320,8 +320,6 @@ namespace R3NextGenBackend.Migrations
 
                     b.Property<long>("FormFieldId");
 
-                    b.Property<long?>("FormFieldId1");
-
                     b.Property<string>("Value")
                         .HasMaxLength(25);
 
@@ -331,60 +329,7 @@ namespace R3NextGenBackend.Migrations
 
                     b.HasIndex("FormFieldId");
 
-                    b.HasIndex("FormFieldId1");
-
                     b.ToTable("FormFieldValue");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CompletedFormId = 1L,
-                            FormFieldId = 1L,
-                            Value = "Dette er valuen"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            CompletedFormId = 2L,
-                            FormFieldId = 2L,
-                            Value = "Dette er valuen"
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            CompletedFormId = 3L,
-                            FormFieldId = 3L,
-                            Value = "Dette er valuen"
-                        },
-                        new
-                        {
-                            Id = 4L,
-                            CompletedFormId = 4L,
-                            FormFieldId = 4L,
-                            Value = "Dette er valuen"
-                        },
-                        new
-                        {
-                            Id = 5L,
-                            CompletedFormId = 5L,
-                            FormFieldId = 5L,
-                            Value = "Dette er valuen"
-                        },
-                        new
-                        {
-                            Id = 6L,
-                            CompletedFormId = 6L,
-                            FormFieldId = 6L,
-                            Value = "Dette er valuen"
-                        },
-                        new
-                        {
-                            Id = 7L,
-                            CompletedFormId = 7L,
-                            FormFieldId = 7L,
-                            Value = "Dette er valuen"
-                        });
                 });
 
             modelBuilder.Entity("BackendNextGen.Models.CompletedForm", b =>
@@ -414,7 +359,7 @@ namespace R3NextGenBackend.Migrations
             modelBuilder.Entity("BackendNextGen.Models.FormFieldValue", b =>
                 {
                     b.HasOne("BackendNextGen.Models.CompletedForm", "CompletedForm")
-                        .WithMany("FormFieldValues")
+                        .WithMany()
                         .HasForeignKey("CompletedFormId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -422,10 +367,6 @@ namespace R3NextGenBackend.Migrations
                         .WithMany()
                         .HasForeignKey("FormFieldId")
                         .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("BackendNextGen.Models.FormField")
-                        .WithMany("FormFieldValues")
-                        .HasForeignKey("FormFieldId1");
                 });
 #pragma warning restore 612, 618
         }

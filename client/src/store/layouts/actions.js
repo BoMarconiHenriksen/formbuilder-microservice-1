@@ -69,73 +69,50 @@ export const updateLockOnComponent = ({ commit }, payload) => {
 }
 
 // Fetch the forms from the database
-export const fetchFormsFromDb = ({ commit }) =>
-  new Promise((resolve, reject) => {
-    axios.get(`${baseUrl}/Forms/`).then(response => {
-      console.log('FETCH:')
-      console.log(JSON.stringify(response.data))
-      commit('getListOfGridItems', response.data)
-      resolve()
-    }).catch(error => {
-      reject(error)
-    })
-  })
+export async function fetchFormsFromDb ({ commit }) {
+  try {
+    const response = await axios.get(`${baseUrl}/Forms/`)
+    commit('getListOfGridItems', response.data)
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 // Update table row in database
-export const updateRow = ({ commit }, row) =>
-  new Promise((resolve, reject) => {
-    console.log('ROW')
-    console.log(row)
-    var updateTableData = getInitialTableFetch()
-    console.log('BEFORE UPDATE')
-    console.log(updateTableData)
+export async function updateRow ({ commit }, row) {
+  var updateTableData = getInitialTableFetch()
 
-    var rowToSend = updateTableData[row.indexFromFetch]
-    console.log('ROWTOSEND')
-    console.log(rowToSend)
+  updateTableData[0].name = row.name
+  updateTableData[0].formFields[0].headline = row.headline
+  updateTableData[0].completedForms[0].completedDate = row.completedDate
 
-    updateTableData[0].name = row.name
-    updateTableData[0].formFields[0].headline = row.headline
-    updateTableData[0].completedForms[0].completedDate = row.completedDate
-    console.log('Efter update')
-    console.log(updateTableData)
+  try {
+    await axios.put(`${baseUrl}/Forms/${row.id}`, updateTableData[0])
+    commit('storeUpdatRow', row)
+  } catch (err) {
+    console.log(err)
+  }
+}
 
-    axios.put(`${baseUrl}/Forms/${row.id}`, updateTableData[0]).then(response => {
-      console.log('AFTER COMMIT')
-      console.log(updateTableData)
-      commit('storeUpdatRow', row)
-      resolve()
-    }).catch(error => {
-      reject(error)
-    })
-  })
-
-// Update table row in database
-export const postTemplate = ({ commit }, template) =>
-  new Promise((resolve, reject) => {
-    console.log('BEFORE POST')
-    console.log(template)
-    axios.post(`${baseUrl}/Forms/`, { id: template.id, name: template.name, formFields: template.formFields, completedForms: template.completedForms })
-      .then(response => {
-        console.log('AFTER COMMIT')
-        console.log(template)
-        commit('updateTableAfterPost', template)
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
-  })
+// Post new item
+export async function postTemplate ({ commit }, template) {
+  try {
+    await axios.post(`${baseUrl}/Forms/`, { id: template.id, name: template.name, formFields: template.formFields, completedForms: template.completedForms })
+    commit('updateTableAfterPost', template)
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 // Delete table row in database
-export const deleteRow = ({ commit }, id) =>
-  new Promise((resolve, reject) => {
-    axios.delete(`${baseUrl}/Forms/${id}`).then(response => {
-      commit('storeDeleteRow', id)
-      resolve()
-    }).catch(error => {
-      reject(error)
-    })
-  })
+export async function deleteRow ({ commit }, id) {
+  try {
+    axios.delete(`${baseUrl}/Forms/${id}`)
+    commit('storeDeleteRow', id)
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 // Helper methods for generating and checking random numbers for the id.
 function generateRandomNumber () {

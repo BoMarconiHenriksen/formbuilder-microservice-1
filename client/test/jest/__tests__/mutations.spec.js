@@ -1,5 +1,5 @@
 import { expect } from './jestGlobals'
-import { setNewGridItem, storeDeleteRow, storeUpdatRow } from '../../../src/store/layouts/mutations'
+import { setNewGridItem, storeDeleteRow, storeUpdatRow, updateTableAfterPost } from '../../../src/store/layouts/mutations'
 
 // Test setNewGridItem in mutation
 describe('mutations', () => {
@@ -45,7 +45,7 @@ describe('mutations', () => {
 // Test storeUpdatRow
 describe('mutations', () => {
     test('storeUpdatRow, sets a grid layout field to State.gridLayout.', () => {
-        
+
         const EditedRow = { completedDate: "2019-05-15T00:00:00", headline: "Indtast Dit Navn", id: 1, indexFromFetch: "0", name: "Brand og redning" }
         /* Create a fake state object */
         const state = {
@@ -55,5 +55,24 @@ describe('mutations', () => {
 
         expect(state.tableData[0].headline).toBe("Indtast Dit Navn")
         expect(state.tableData[0].name).toBe("Brand og redning")
+    })
+})
+
+// Test that the store updates after a new post
+describe('mutations', () => {
+    test('updateTableAfterPost, updates the store after a new post.', () => {
+        /* Create a gridlayout array that is added to the payload object */
+        const template = { name: 'Name of the form', completedForms: [{ completedDate: "2019/05/05", formFieldValues: [{ value: '' }] }], formFields: [{ id: 0, column: null, component: { id: 0, componentName: 'A component name', formFieldId: 0 }, headline: 'A headline', height: null, row: null, static: false, width: null, formFieldValues: [] }] }
+
+        /* Create a fake state object */
+        const state = {
+            tableData: [
+                { id: 1, name: 'Brand', headline: 'Hvor brander det?', data: '29-11-1999' },
+
+            ]
+        }
+        updateTableAfterPost(state, template)
+        /* Compare recursively all properties of object instances */
+        expect(state.tableData).toHaveLength(2)
     })
 })
