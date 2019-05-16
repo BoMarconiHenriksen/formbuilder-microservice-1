@@ -70,12 +70,14 @@ export const updateLockOnComponent = ({ commit }, payload) => {
 
 // Fetch the forms from the database
 export async function fetchFormsFromDb ({ commit }) {
+  // commit('setLoading', true)
   try {
     const response = await axios.get(`${baseUrl}/Forms/`)
     commit('getListOfGridItems', response.data)
   } catch (err) {
     console.log(err)
   }
+  //  commit('setLoading', false)
 }
 
 // Update table row in database
