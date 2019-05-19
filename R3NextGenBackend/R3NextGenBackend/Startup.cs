@@ -36,7 +36,7 @@ namespace R3NextGenBackend
 
             services.AddDbContext<RepositoryContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -64,6 +64,15 @@ namespace R3NextGenBackend
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            }
+
+            // Create and seed database 
+            // https://stackoverflow.com/questions/37780136/asp-core-migrate-ef-core-sql-db-on-startup
+            // https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/database-server-container
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<RepositoryContext>();
+                context.Database.Migrate();
             }
 
             app.UseCors("CorsPolicy");

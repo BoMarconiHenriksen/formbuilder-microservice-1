@@ -1,5 +1,6 @@
 # Production
-FROM node:alpine as builder
+# The low node alpine version is because of ubuntu
+FROM node:8.12-alpine as builder
 
 WORKDIR '/app'
 
@@ -7,6 +8,7 @@ COPY ./package*.json /app/
 
 RUN npm install -g @quasar/cli
 RUN npm install --save-dev quasar-cli@latest
+
 COPY . /app/
 RUN quasar build
 

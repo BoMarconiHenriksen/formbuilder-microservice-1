@@ -1,6 +1,6 @@
 import axios from 'axios'
 import state from '../layouts/state'
-const baseUrl = 'https://localhost:5001/api'
+const baseUrl = '/api' // https://localhost:5001
 
 import initialLayoutData from '../../assets/savedLayouts/demo.json'
 

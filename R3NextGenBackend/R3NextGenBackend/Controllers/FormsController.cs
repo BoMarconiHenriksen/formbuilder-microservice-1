@@ -9,8 +9,15 @@ using Microsoft.EntityFrameworkCore;
 using BackendNextGen.Models;
 using R3NextGenBackend;
 
+// https://sachabarbs.wordpress.com/2018/04/09/kubernetes-part-5-of-n-config-maps-and-secrets/
+// http://blog.tintoy.io/2018/03/kubernetes-native-config-with-netcore/
+
+// https://blogs.msdn.microsoft.com/monub/2017/09/21/docker-blog-series-part-4-managing-secrets-inside-kubernetes-cluster-in-azure-container-service/
+// https://blogs.msdn.microsoft.com/atverma/2018/10/19/asp-net-core-2-1-web-api-load-app-configuration-from-appsettings-json-dockerfile-environment-variables-azure-key-vault-secrets-and-kubernetes-configmaps-secrets/
+
 namespace R3NextGenBackend.Controllers
 {
+    // [Route("api/[controller]")]
     [Route("api/[controller]")]
     [ApiController]
     public class FormsController : ControllerBase
