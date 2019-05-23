@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using R3NextGenBackend.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Reflection;
+using System;
 
 namespace R3NextGenBackend
 {
@@ -35,7 +37,34 @@ namespace R3NextGenBackend
             services.ConfigureIISIntegration();
 
             services.AddDbContext<RepositoryContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                sqlServerOptionsAction: sqlOptions =>
+                {
+                sqlOptions.
+                    MigrationsAssembly(
+                        typeof(Startup).
+                            GetTypeInfo().
+                            Assembly.
+                            GetName().Name);
+
+                //Configuring Connection Resiliency:
+                sqlOptions.
+                    EnableRetryOnFailure(maxRetryCount: 10,
+                    maxRetryDelay: TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null);
+
+            });
+
+            // Changing default behavior when client evaluation occurs to throw.
+            // Default in EFCore would be to log warning when client evaluation is done.
+            //options.ConfigureWarnings(warnings => warnings.Throw(
+            //    RelationalEventId.QueryClientEvaluationWarning));
+            });
+
+            // Normal db connector
+            // services.AddDbContext<RepositoryContext>(options =>
+            //   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMvc().AddJsonOptions(options => {
@@ -69,11 +98,11 @@ namespace R3NextGenBackend
             // Create and seed database 
             // https://stackoverflow.com/questions/37780136/asp-core-migrate-ef-core-sql-db-on-startup
             // https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/database-server-container
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetService<RepositoryContext>();
-                context.Database.Migrate();
-            }
+            // using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            // {
+            //     var context = serviceScope.ServiceProvider.GetService<RepositoryContext>();
+            //     context.Database.Migrate();
+            // }
 
             app.UseCors("CorsPolicy");
 
