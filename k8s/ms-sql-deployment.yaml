@@ -22,7 +22,7 @@ spec:
         - name: mssql
           image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu # 2017-latest-ubuntu # postgres # Change this!!!
           ports:
-            - containerPort: 1433 
+            - containerPort: 1433
           # Here is how I want to use it(pvc) inside my container
           volumeMounts:
               # Volumes has to be identical with volumeMounts
@@ -37,11 +37,11 @@ spec:
               # subPath: postgres
           env:
             - name: MSSQL_PID
-              value: "Express"
+              value: Developer
             - name: ACCEPT_EULA
               value: "Y"
-            - name: SA_PASSWORD # MSSQL_SA_PASSWORD Name of the env variable
-              value: "PassWord123"
+            - name: MSSQL_SA_PASSWORD # MSSQL_SA_PASSWORD Name of the env variable
+              value: PassWord123
               #valueFrom:
               #  secretKeyRef:
               #    name: mssqlpassword

@@ -1,4 +1,14 @@
-﻿IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+﻿USE master
+GO
+IF(db_id(N'c3NextGen') IS NULL)
+BEGIN
+	CREATE DATABASE c3NextGen
+END;
+GO
+USE c3NextGen
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE NAME='c3NextGen' AND XTYPE='U')
+
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
 BEGIN
     CREATE TABLE [__EFMigrationsHistory] (
         [MigrationId] nvarchar(150) NOT NULL,
@@ -149,4 +159,3 @@ INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
 VALUES (N'20190516080548_initialModel', N'2.2.4-servicing-10062');
 
 GO
-

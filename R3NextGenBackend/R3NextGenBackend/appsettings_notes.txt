@@ -7,7 +7,12 @@
 //    "DefaultConnection": "server=DESKTOP-EBJI76V\\SQLEXPRESS;database=c3NextGenDB;MultipleActiveResultSets=True;Trusted_Connection=True;App=EntityFramework;"
 //  }
 
+// "DefaultConnection": "Server=localhost;Database=c3NextGen;uid=sa;pwd=PassWord123;MultipleActiveResultSets=true"
+// c3NextGen
+
 // Server=mssql-cluster-ip-service,1433
 
 // launchSetting
 // https://localhost:5001;http://localhost:5000
+
+// Server="ms-sql-cluster-ip-service,1433;"

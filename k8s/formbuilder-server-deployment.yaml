@@ -20,11 +20,11 @@ spec:
           # Need to change this to ms-sql - https://hub.docker.com/_/microsoft-mssql-server
           env:
             - name: MSSQL_PID
-              value: "Express"
+              value: "Developer"
             - name: ACCEPT_EULA
               value: "Y"
-            - name: ConnectionStrings__DefaultConnection
-              value: "Server=ms-sql-cluster-ip-service;Database=c3NextGen;uid=sa;pwd=Password123;MultipleActiveResultSets=true"
+            #- name: ConnectionStrings__DefaultConnection
+            #  value: "Server=ms-sql-cluster-ip-service;Database=c3NextGen;uid=sa;pwd=Password123;MultipleActiveResultSets=true"
             #- name: MSSQLUSER
             #  value: SA
             #- name: MSSQLHOST
