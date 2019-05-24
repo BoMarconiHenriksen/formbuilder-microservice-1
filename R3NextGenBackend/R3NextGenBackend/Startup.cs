@@ -21,7 +21,7 @@ namespace R3NextGenBackend
         }
 
         public IConfiguration Configuration { get; }
-
+        // https://andrewlock.net/running-async-tasks-on-app-startup-in-asp-net-core-part-1/
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -36,35 +36,37 @@ namespace R3NextGenBackend
 
             services.ConfigureIISIntegration();
 
-            services.AddDbContext<RepositoryContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                sqlServerOptionsAction: sqlOptions =>
-                {
-                sqlOptions.
-                    MigrationsAssembly(
-                        typeof(Startup).
-                            GetTypeInfo().
-                            Assembly.
-                            GetName().Name);
+            //services.AddDbContext<RepositoryContext>(options =>
+            //{
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            //    sqlServerOptionsAction: sqlOptions =>
+            //    {
+            //    sqlOptions.
+            //        MigrationsAssembly(
+            //            typeof(Startup).
+            //                GetTypeInfo().
+            //                Assembly.
+            //                GetName().Name);
 
-                //Configuring Connection Resiliency:
-                sqlOptions.
-                    EnableRetryOnFailure(maxRetryCount: 10,
-                    maxRetryDelay: TimeSpan.FromSeconds(30),
-                    errorNumbersToAdd: null);
+            //    //Configuring Connection Resiliency:
+            //    sqlOptions.
+            //        EnableRetryOnFailure(maxRetryCount: 10,
+            //        maxRetryDelay: TimeSpan.FromSeconds(30),
+            //        errorNumbersToAdd: null);
 
-            });
+            //});
 
             // Changing default behavior when client evaluation occurs to throw.
             // Default in EFCore would be to log warning when client evaluation is done.
             //options.ConfigureWarnings(warnings => warnings.Throw(
             //    RelationalEventId.QueryClientEvaluationWarning));
-            });
+            // });
+
+
 
             // Normal db connector
-            // services.AddDbContext<RepositoryContext>(options =>
-            //   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<RepositoryContext>(options =>
+              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMvc().AddJsonOptions(options => {
@@ -98,11 +100,11 @@ namespace R3NextGenBackend
             // Create and seed database 
             // https://stackoverflow.com/questions/37780136/asp-core-migrate-ef-core-sql-db-on-startup
             // https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/database-server-container
-            // using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            // {
-            //     var context = serviceScope.ServiceProvider.GetService<RepositoryContext>();
-            //     context.Database.Migrate();
-            // }
+            //using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            //{
+            //    var context = serviceScope.ServiceProvider.GetService<RepositoryContext>();
+            //    context.Database.Migrate();
+            //}
 
             app.UseCors("CorsPolicy");
 

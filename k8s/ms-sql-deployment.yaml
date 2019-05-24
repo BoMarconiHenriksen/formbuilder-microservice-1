@@ -20,7 +20,7 @@ spec:
             claimName: database-formbuilder-persistent-volume-claim
       containers:
         - name: mssql
-          image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu # 2017-latest-ubuntu # postgres # Change this!!!
+          image: microsoft/mssql-server-linux:2017-latest # mcr.microsoft.com/mssql/server:2017-latest-ubuntu # 2017-latest-ubuntu #
           ports:
             - containerPort: 1433
           # Here is how I want to use it(pvc) inside my container
