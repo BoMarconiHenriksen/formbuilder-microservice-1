@@ -87,33 +87,6 @@ namespace R3NextGenBackend.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "FormFieldValue",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Value = table.Column<string>(maxLength: 25, nullable: true),
-                    FormFieldId = table.Column<long>(nullable: false),
-                    CompletedFormId = table.Column<long>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FormFieldValue", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FormFieldValue_CompletedForm_CompletedFormId",
-                        column: x => x.CompletedFormId,
-                        principalTable: "CompletedForm",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_FormFieldValue_FormField_FormFieldId",
-                        column: x => x.FormFieldId,
-                        principalTable: "FormField",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.InsertData(
                 table: "Form",
                 columns: new[] { "Id", "Name" },
@@ -133,13 +106,13 @@ namespace R3NextGenBackend.Migrations
                 columns: new[] { "Id", "CompletedDate", "FormId", "UserId" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2019, 5, 24, 0, 0, 0, 0, DateTimeKind.Local), 1L, 1L },
-                    { 2L, new DateTime(2019, 5, 24, 0, 0, 0, 0, DateTimeKind.Local), 2L, 2L },
-                    { 3L, new DateTime(2019, 5, 24, 0, 0, 0, 0, DateTimeKind.Local), 3L, 3L },
-                    { 4L, new DateTime(2019, 5, 24, 0, 0, 0, 0, DateTimeKind.Local), 4L, 1L },
-                    { 5L, new DateTime(2019, 5, 24, 0, 0, 0, 0, DateTimeKind.Local), 5L, 2L },
-                    { 6L, new DateTime(2019, 5, 24, 0, 0, 0, 0, DateTimeKind.Local), 6L, 1L },
-                    { 7L, new DateTime(2019, 5, 24, 0, 0, 0, 0, DateTimeKind.Local), 7L, 1L }
+                    { 1L, new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local), 1L, 1L },
+                    { 2L, new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local), 2L, 2L },
+                    { 3L, new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local), 3L, 3L },
+                    { 4L, new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local), 4L, 1L },
+                    { 5L, new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local), 5L, 2L },
+                    { 6L, new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local), 6L, 1L },
+                    { 7L, new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local), 7L, 1L }
                 });
 
             migrationBuilder.InsertData(
@@ -185,28 +158,15 @@ namespace R3NextGenBackend.Migrations
                 name: "IX_FormField_FormId",
                 table: "FormField",
                 column: "FormId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormFieldValue_CompletedFormId",
-                table: "FormFieldValue",
-                column: "CompletedFormId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FormFieldValue_FormFieldId",
-                table: "FormFieldValue",
-                column: "FormFieldId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Component");
-
-            migrationBuilder.DropTable(
-                name: "FormFieldValue");
-
-            migrationBuilder.DropTable(
                 name: "CompletedForm");
+
+            migrationBuilder.DropTable(
+                name: "Component");
 
             migrationBuilder.DropTable(
                 name: "FormField");

@@ -34,10 +34,10 @@ namespace R3NextGenBackend
         {
 
             // sql server
-            modelBuilder.Entity<FormFieldValue>()
-                .HasOne(f => f.FormField)
-                .WithMany()
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<FormFieldValue>()
+            //    .HasOne(f => f.FormField)
+            //    .WithMany()
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             // Create one to one relationship
             modelBuilder.Entity<FormField>()

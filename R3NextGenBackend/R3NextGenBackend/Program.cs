@@ -9,34 +9,38 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using R3NextGenBackend.Models;
 
 namespace R3NextGenBackend
 {
     public class Program
     {
-        public static async Task Main(string[] args) // deleted void
+        public static void Main(string[] args) 
         {
+
             // CreateWebHostBuilder(args).Build().Run();
+            var host = CreateWebHostBuilder(args).Build();
 
-            IWebHost webHost = CreateWebHostBuilder(args).Build();
-
-            // Create a new scope
-            using (var scope = webHost.Services.CreateScope())
+            using (var scope = host.Services.CreateScope())
             {
-                // Get the DbContext instance
-                var myDbContext = scope.ServiceProvider.GetRequiredService<RepositoryContext>();
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var context = services.GetRequiredService<RepositoryContext>();
+                    DbInitializer.Initialize(context);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while seeding the database.");
+                }
 
-                //Do the migration asynchronously
-                await myDbContext.Database.MigrateAsync();
             }
-
-            // Run the WebHost, and start accepting requests
-            // There's an async overload, so we may as well use it
-            await webHost.RunAsync();
+            host.Run();
         }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
+            public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+                WebHost.CreateDefaultBuilder(args)
+                    .UseStartup<Startup>();
+        }
 }

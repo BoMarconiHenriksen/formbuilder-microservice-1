@@ -16,3 +16,6 @@
 // https://localhost:5001;http://localhost:5000
 
 // Server="ms-sql-cluster-ip-service,1433;"
+
+// VIRKER K8s
+"Server=mssql-cluster-ip-service, 1433;Database=c3NextGen;User Id=sa;Password=PassWord123;"

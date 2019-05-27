@@ -73,9 +73,7 @@ namespace R3NextGenBackend
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
-            // Connection string for the json file for development without docker.
-            // For local development without docker Server=(localdb)\\mssqllocaldb;Database=c3NextGen;Trusted_Connection=True; // OLD Server=dbformbuilder
-
+           
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
