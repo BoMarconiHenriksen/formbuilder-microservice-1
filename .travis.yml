@@ -28,7 +28,7 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Build the test image. Is nestet in the client folder
   # - docker build -t bomarconi/quasar-test -f ./client/Dockerfile.dev ./client
-
+  #
 # script:
   # -- -- coverage means no watchmode
   # - docker run bomarconi/quasar-test quasar test --unit jest # -- --coverage
