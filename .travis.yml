@@ -3,7 +3,7 @@ services:
   - docker
 env:
   global:
-    # Get the current commit sha and store it as an environment variable called sha 
+    # Get the current commit sha and store it as an environment variable called sha
     - SHA=$(git rev-parse HEAD)
     # Configure google cli so it's does not show prompts
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
@@ -27,11 +27,11 @@ before_install:
   # Login to dogger the password is emmited over stdin into this command
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Build the test image. Is nestet in the client folder
-  - docker build -t bomarconi/quasar-test -f ./client/Dockerfile.dev ./client
+  # - docker build -t bomarconi/quasar-test -f ./client/Dockerfile.dev ./client
 
-script:
+# script:
   # -- -- coverage means no watchmode
-  - docker run bomarconi/quasar-test quasar test --unit jest # -- --coverage
+  # - docker run bomarconi/quasar-test quasar test --unit jest # -- --coverage
 
 deploy:
   # Run script file to deploy
