@@ -17,7 +17,7 @@ spec:
             backend:
               serviceName: client-cluster-ip-service
               servicePort: 8080
-          - path: /api/ # /api/?(.*)
+          - path: /api/?(.*) # /api/ /api/?(.*)
             backend:
               serviceName: formbuilder-server-cluster-ip-service
               servicePort: 5001

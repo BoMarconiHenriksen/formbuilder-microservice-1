@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BackendNextGen.Models
@@ -17,6 +16,6 @@ namespace BackendNextGen.Models
         public long FormFieldId { get; set; }
         public FormField FormField { get; set; }
 
-        
+
     }
 }

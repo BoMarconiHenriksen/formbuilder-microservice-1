@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BackendNextGen.Models
@@ -9,7 +8,7 @@ namespace BackendNextGen.Models
     {
         public CompletedForm()
         {
-            // FormFieldValues = new HashSet<FormFieldValue>();
+
         }
 
         [Key]

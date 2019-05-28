@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BackendNextGen.Models;
-using R3NextGenBackend;
-
-// https://sachabarbs.wordpress.com/2018/04/09/kubernetes-part-5-of-n-config-maps-and-secrets/
-// http://blog.tintoy.io/2018/03/kubernetes-native-config-with-netcore/
-
-// https://blogs.msdn.microsoft.com/monub/2017/09/21/docker-blog-series-part-4-managing-secrets-inside-kubernetes-cluster-in-azure-container-service/
-// https://blogs.msdn.microsoft.com/atverma/2018/10/19/asp-net-core-2-1-web-api-load-app-configuration-from-appsettings-json-dockerfile-environment-variables-azure-key-vault-secrets-and-kubernetes-configmaps-secrets/
 
 namespace R3NextGenBackend.Controllers
 {
@@ -76,8 +66,8 @@ namespace R3NextGenBackend.Controllers
         //    if (formRow != null)
         //    {
         //        formRow.Name = form.Name;
-                 
-                
+
+
         //        _context.SaveChanges();
         //    }
         //}
