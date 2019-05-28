@@ -5,7 +5,7 @@ namespace R3NextGenBackend.Extensions
 {
     public static class ServiceExtensions
     {
-        // For CORS
+        // For CORS - DELETE THIS OR MOVE CORS TO THIS CLASS!!!
         //public static void ConfigureCors(this IServiceCollection services)
         //{
         //    services.AddCors(options =>

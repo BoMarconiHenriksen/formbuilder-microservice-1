@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BackendNextGen.Models;
-using R3NextGenBackend;
 
 namespace R3NextGenBackend.Controllers
 {
+    // [Route("api/[controller]")]
     [Route("api/[controller]")]
     [ApiController]
     public class FormsController : ControllerBase
@@ -25,10 +23,22 @@ namespace R3NextGenBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Form>>> GetForm()
         {
-            return await _context.Form.ToListAsync();
+            var list = _context.Form
+                .Include(form => form.FormFields)
+                    .ThenInclude(FormFields => FormFields.Component)
+                .Include(c => c.CompletedForms)
+                    // .ThenInclude(CompletedForms => CompletedForms.FormFieldValues)
+                .ToListAsync();
+            return await list;
+            //return await _context.Form
+            //    .Include(form => form.FormFields)
+            //        .ThenInclude(FormFields => FormFields.Component)
+            //    .Include(c => c.CompletedForms)
+            //        // .ThenInclude(CompletedForms => CompletedForms.FormFieldValues)
+            //    .ToListAsync();
         }
 
-        // GET: api/Forms/5
+         // GET: api/Forms/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Form>> GetForm(long id)
         {
@@ -43,20 +53,70 @@ namespace R3NextGenBackend.Controllers
             return form;
         }
 
+        // PUT api/values/5
+        //[HttpPut("{id}")]
+        //public void Put(long id, [FromBody] Form form)
+        //{
+        //    // Get the row from the database
+        //    var formRow = _context.Form.Find(id);
+        //    //var changedHeadline = _context.FormField.Find(id);
+        //    // var formRow = _context.Form
+        //    //    .Include(form => form.FormFields)
+
+        //    if (formRow != null)
+        //    {
+        //        formRow.Name = form.Name;
+
+
+        //        _context.SaveChanges();
+        //    }
+        //}
+
         // PUT: api/Forms/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutForm(long id, Form form)
         {
+
             if (id != form.Id)
             {
                 return BadRequest();
             }
 
+
+            // Edit Form table
             _context.Entry(form).State = EntityState.Modified;
+
+            // Edit headline in FormFields
+            foreach (var f in form.FormFields)
+            {
+                _context.Entry(f).State = EntityState.Modified;
+            }
+
+            // Edit headline in FormFields
+            // form.FormFields.ToList().ForEach(f => _context.Entry(f).State = EntityState.Modified);
+
+            // Edit headline in FormFields
+            //var dbentity = _context.Form.Find(id);
+
+            //if (dbentity != null)
+            //{
+            //    dbentity.Name = form.Name;
+
+            //    foreach (var f in dbentity.FormFields)
+            //    {
+            //        var incomingFf = form.FormFields.SingleOrDefault(ef => ef.Id == f.Id);
+
+            //        if (incomingFf != null)
+            //        {
+            //            f.Headline = incomingFf.Headline;
+            //        }
+            //    }
+            //}
 
             try
             {
                 await _context.SaveChangesAsync();
+
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,6 +137,11 @@ namespace R3NextGenBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<Form>> PostForm(Form form)
         {
+            if (form.Name == null)
+            {
+                return BadRequest();
+            }
+
             _context.Form.Add(form);
             await _context.SaveChangesAsync();
 

@@ -3,22 +3,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BackendNextGen.Models
 {
-    public class FormFieldValue
+    public class Component
     {
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
-        [StringLength(25, ErrorMessage = "Value cannot be longer than 25 characters.")]
-        public string Value { get; set; }
+        [StringLength(25, ErrorMessage = "Component cannot be longer than 25 characters.")]
+        public string ComponentName { get; set; }
 
-        [ForeignKey("FormField")]
+        // [ForeignKey("FormField")]
         public long FormFieldId { get; set; }
         public FormField FormField { get; set; }
 
-        [ForeignKey("CompletedForm")]
-        public long CompletedFormId { get; set; }
-        public CompletedForm CompletedForm { get; set; }
+
     }
 }
