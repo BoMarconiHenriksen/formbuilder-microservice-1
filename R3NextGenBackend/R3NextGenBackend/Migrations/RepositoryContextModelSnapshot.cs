@@ -41,35 +41,114 @@ namespace R3NextGenBackend.Migrations
                         new
                         {
                             Id = 1L,
-                            CompletedDate = new DateTime(2019, 3, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            CompletedDate = new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local),
                             FormId = 1L,
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CompletedDate = new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            FormId = 2L,
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CompletedDate = new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            FormId = 3L,
+                            UserId = 3L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CompletedDate = new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            FormId = 4L,
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CompletedDate = new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            FormId = 5L,
+                            UserId = 2L
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CompletedDate = new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            FormId = 6L,
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            CompletedDate = new DateTime(2019, 5, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            FormId = 7L,
                             UserId = 1L
                         });
                 });
 
-            modelBuilder.Entity("BackendNextGen.Models.Field", b =>
+            modelBuilder.Entity("BackendNextGen.Models.Component", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Component")
+                    b.Property<string>("ComponentName")
                         .HasMaxLength(25);
 
                     b.Property<long>("FormFieldId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FormFieldId");
+                    b.HasIndex("FormFieldId")
+                        .IsUnique();
 
-                    b.ToTable("Field");
+                    b.ToTable("Component");
 
                     b.HasData(
                         new
                         {
                             Id = 1L,
-                            Component = "appInputFieldComponent",
+                            ComponentName = "appInputFieldComponent",
                             FormFieldId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            ComponentName = "appInputFieldComponent",
+                            FormFieldId = 2L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            ComponentName = "appInputFieldComponent",
+                            FormFieldId = 3L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            ComponentName = "appInputFieldComponent",
+                            FormFieldId = 4L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            ComponentName = "appInputFieldComponent",
+                            FormFieldId = 5L
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            ComponentName = "appInputFieldComponent",
+                            FormFieldId = 6L
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            ComponentName = "appInputFieldComponent",
+                            FormFieldId = 7L
                         });
                 });
 
@@ -89,7 +168,37 @@ namespace R3NextGenBackend.Migrations
                         new
                         {
                             Id = 1L,
-                            Name = "Prøve Formular"
+                            Name = "Brand"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Name = "Affaldssortering"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Name = "Biluheld"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Name = "Overfald"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Name = "Underet Borgmesterkontoret"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            Name = "Kemikaliebrand"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            Name = "Tilkald helikopter"
                         });
                 });
 
@@ -130,41 +239,72 @@ namespace R3NextGenBackend.Migrations
                             Row = 3,
                             Static = false,
                             Width = 3
-                        });
-                });
-
-            modelBuilder.Entity("BackendNextGen.Models.FormFieldValue", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("CompletedFormId");
-
-                    b.Property<long>("FormFieldId");
-
-                    b.Property<long?>("FormFieldId1");
-
-                    b.Property<string>("Value")
-                        .HasMaxLength(25);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompletedFormId");
-
-                    b.HasIndex("FormFieldId");
-
-                    b.HasIndex("FormFieldId1");
-
-                    b.ToTable("FormFieldValue");
-
-                    b.HasData(
+                        },
                         new
                         {
-                            Id = 1L,
-                            CompletedFormId = 1L,
-                            FormFieldId = 1L,
-                            Value = "Dette er valuen"
+                            Id = 2L,
+                            Column = 2,
+                            FormId = 2L,
+                            Headline = "Er der en affaldsspand",
+                            Height = 3,
+                            Row = 3,
+                            Static = false,
+                            Width = 2
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Column = 3,
+                            FormId = 3L,
+                            Headline = "Antal kvæstede",
+                            Height = 4,
+                            Row = 3,
+                            Static = false,
+                            Width = 3
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Column = 3,
+                            FormId = 4L,
+                            Headline = "Overfaldsvåben",
+                            Height = 5,
+                            Row = 3,
+                            Static = false,
+                            Width = 3
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Column = 3,
+                            FormId = 5L,
+                            Headline = "Skal komunaldirektøren underrettes",
+                            Height = 2,
+                            Row = 3,
+                            Static = false,
+                            Width = 5
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            Column = 3,
+                            FormId = 6L,
+                            Headline = "Hvilken type kemikalie er i brand?",
+                            Height = 5,
+                            Row = 3,
+                            Static = false,
+                            Width = 5
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            Column = 3,
+                            FormId = 7L,
+                            Headline = "Hvor skal helikopteren lande?",
+                            Height = 2,
+                            Row = 3,
+                            Static = false,
+                            Width = 3
                         });
                 });
 
@@ -176,11 +316,11 @@ namespace R3NextGenBackend.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BackendNextGen.Models.Field", b =>
+            modelBuilder.Entity("BackendNextGen.Models.Component", b =>
                 {
                     b.HasOne("BackendNextGen.Models.FormField", "FormField")
-                        .WithMany()
-                        .HasForeignKey("FormFieldId")
+                        .WithOne("Component")
+                        .HasForeignKey("BackendNextGen.Models.Component", "FormFieldId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -190,23 +330,6 @@ namespace R3NextGenBackend.Migrations
                         .WithMany("FormFields")
                         .HasForeignKey("FormId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("BackendNextGen.Models.FormFieldValue", b =>
-                {
-                    b.HasOne("BackendNextGen.Models.CompletedForm", "CompletedForm")
-                        .WithMany("FormFieldValues")
-                        .HasForeignKey("CompletedFormId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("BackendNextGen.Models.FormField", "FormField")
-                        .WithMany()
-                        .HasForeignKey("FormFieldId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("BackendNextGen.Models.FormField")
-                        .WithMany("FormFieldValues")
-                        .HasForeignKey("FormFieldId1");
                 });
 #pragma warning restore 612, 618
         }

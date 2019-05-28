@@ -8,11 +8,7 @@ namespace BackendNextGen.Models
     {
         public FormField()
         {
-        }
-
-        public FormField(int v)
-        {
-            FormFieldValues = new HashSet<FormFieldValue>();
+            // FormFieldValues = new HashSet<FormFieldValue>();
         }
 
         [Key]
@@ -35,6 +31,7 @@ namespace BackendNextGen.Models
         public long FormId { get; set; }
         public Form Form { get; set; }
 
-        public ICollection<FormFieldValue> FormFieldValues { get; set; }
+        public Component Component { get; set; }
     }
 }
+

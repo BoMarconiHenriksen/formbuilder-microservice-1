@@ -1,23 +1,24 @@
-#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-#For more information, please see https://aka.ms/containercompat
-
-FROM microsoft/dotnet:2.2-aspnetcore-runtime-nanoserver-1803 AS base
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
+EXPOSE 5001
 
-FROM microsoft/dotnet:2.2-sdk-nanoserver-1803 AS build
+FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
-COPY ["R3NextGenBackend/R3NextGenBackend.csproj", "R3NextGenBackend/"]
+COPY R3NextGenBackend.csproj ./R3NextGenBackend/
+# Restore the packages for our solution
 RUN dotnet restore "R3NextGenBackend/R3NextGenBackend.csproj"
-COPY . .
 WORKDIR "/src/R3NextGenBackend"
+COPY . .
 RUN dotnet build "R3NextGenBackend.csproj" -c Release -o /app
 
 FROM build AS publish
+# Publish the application to the app folder
 RUN dotnet publish "R3NextGenBackend.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
+# Configure the container to run as an executable that will start the application
 ENTRYPOINT ["dotnet", "R3NextGenBackend.dll"]

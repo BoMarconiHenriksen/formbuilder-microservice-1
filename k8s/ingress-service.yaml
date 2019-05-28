@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  # annotations is additional options. Higher level configuration around the Ingress object
+  annotations:
+    # Tells Kubernetes we want to create a nginx controller based on the nginx project
+    kubernetes.io/ingress.class: nginx
+    # Configure how our copy of nginx behaves
+    # This behaivor removes the /api from the incomming requests so we dont have to write /api on the server
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: / # /?(.*)
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 8080
+          - path: /api/?(.*) # /api/ /api/?(.*)
+            backend:
+              serviceName: formbuilder-server-cluster-ip-service
+              servicePort: 5001

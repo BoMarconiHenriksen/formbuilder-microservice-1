@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using R3NextGenBackend.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -17,19 +19,30 @@ namespace R3NextGenBackend
         }
 
         public IConfiguration Configuration { get; }
-
+        // https://andrewlock.net/running-async-tasks-on-app-startup-in-asp-net-core-part-1/
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.ConfigureCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                builder => builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+            });
 
             services.ConfigureIISIntegration();
-            services.AddDbContext<RepositoryContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            // Connection string for the json file for development without docker.
-            // For local development without docker Server=(localdb)\\mssqllocaldb;Database=c3NextGen;Trusted_Connection=True;
+            // Normal db connector
+            services.AddDbContext<RepositoryContext>(options =>
+              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -52,12 +65,7 @@ namespace R3NextGenBackend
                 app.UseHsts();
             }
 
-            //app.UseCors("CorsPolicy");
-
-            //app.UseForwardedHeaders(new ForwardedHeadersOptions
-            //{
-            //    ForwardedHeaders = ForwardedHeaders.All
-            //});
+            app.UseCors("CorsPolicy");
 
             // enables using static files for the request. If we don’t set a path to the static files, it will use a wwwroot folder in our solution explorer by default.
             app.UseStaticFiles();

@@ -3,9 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>a1ef6474-77b0-4020-ad4f-508a05702303</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190501065419_initialModel.cs" />
+    <Compile Remove="Migrations\20190501065419_initialModel.Designer.cs" />
+    <Compile Remove="Migrations\20190501081351_seeding.cs" />
+    <Compile Remove="Migrations\20190501081351_seeding.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ErikEJ.EntityFrameworkCore.DgmlBuilder" Version="2.1.1" />
