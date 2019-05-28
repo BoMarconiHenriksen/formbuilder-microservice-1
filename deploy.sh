@@ -12,7 +12,7 @@ push bomarconi/formbuilder-server:$SHA
 # Apply the images to kubernetes
 kubectl apply -f k8s
 
-# Make sure that we use the latest image for each container
+# Make sure that we use the latest image for each container. server- and client-deployments comes from the k8s file
 kubectl set image deployments/server-deployment server=bomarconi/formbuilder-server:$SHA
 kubectl set image deployments/client-deployment client=bomarconi/quasar-client:$SHA
 

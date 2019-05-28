@@ -33,7 +33,8 @@ spec:
               value: '1433'
             - name: MSSQLDATABASE
               value: c3NextGen
-            #- name: SA_PASSWORD # MSSQL_SA_PASSWORD
+            - name: SA_PASSWORD # MSSQL_SA_PASSWORD
+              value: PassWord123
             #  valueFrom:
             #    secretKeyRef:
             #      name: mssqlpassword
