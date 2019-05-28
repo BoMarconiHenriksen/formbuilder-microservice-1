@@ -8,7 +8,7 @@ WORKDIR '/app'
 COPY ./package*.json ./
 
 RUN npm install -g @quasar/cli
-RUN npm install --save-dev quasar-cli@latest
+RUN npm install
 
 FROM node:alpine
 WORKDIR '/app'
