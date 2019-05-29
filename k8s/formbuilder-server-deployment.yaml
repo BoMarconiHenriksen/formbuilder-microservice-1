@@ -16,15 +16,13 @@ spec:
         - name: server
           image: bomarconi/formbuilder-server
           ports:
-            - containerPort: 5001
+            - containerPort: 80 # 5001
           # Need to change this to ms-sql - https://hub.docker.com/_/microsoft-mssql-server
           env:
             - name: MSSQL_PID
               value: "Developer"
             - name: ACCEPT_EULA
               value: "Y"
-            #- name: ConnectionStrings__DefaultConnection
-            #  value: "Server=ms-sql-cluster-ip-service;Database=c3NextGen;uid=sa;pwd=Password123;MultipleActiveResultSets=true"
             - name: MSSQLUSER
               value: sa
             - name: MSSQLHOST
@@ -33,12 +31,6 @@ spec:
               value: '1433'
             - name: MSSQLDATABASE
               value: c3NextGen
-            - name: SA_PASSWORD # MSSQL_SA_PASSWORD
+            - name: SA_PASSWORD
               value: PassWord123
-            #  valueFrom:
-            #    secretKeyRef:
-            #      name: mssqlpassword
-            #      key: MY_SA_PASSWORD # The key is what was created with the imperative command
-      # restartPolicy: Always
-# https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-2017
-# https://hub.docker.com/_/microsoft-mssql-server
+
