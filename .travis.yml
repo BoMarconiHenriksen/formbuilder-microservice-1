@@ -33,6 +33,7 @@ before_install:
   # -- -- coverage means no watchmode
   # - docker run bomarconi/quasar-test quasar test --unit jest # -- --coverage
 
+# Use generic language otherwise it will build in Ruby which is default
 language: generic
 deploy:
   provider: script # Run script file to deploy
