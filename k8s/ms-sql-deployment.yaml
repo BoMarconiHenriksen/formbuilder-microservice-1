@@ -30,19 +30,10 @@ spec:
               # Where inside the container should the storage be made availble
               # This will actually be stored inside the volumes. Has to be default storage path for the db
               mountPath: /var/opt/mssql
-                #- name: mssql-storage
-                  # mountPath: /var/opt/mssql
-              # DELETE THIS WHEN EVERYTHING WORKS!!!!
-              # This is only for postgres. Any data that is stored inside the mountPath is stored in a folder called postgres inside the PVC
-              # subPath: postgres
           env:
             - name: MSSQL_PID
               value: Developer
             - name: ACCEPT_EULA
               value: "Y"
-            - name: MSSQL_SA_PASSWORD # MSSQL_SA_PASSWORD Name of the env variable
+            - name: MSSQL_SA_PASSWORD
               value: PassWord123
-              #valueFrom:
-              #  secretKeyRef:
-              #    name: mssqlpassword
-              #    key: MY_SA_PASSWORD # The key is what was created with the imperative command

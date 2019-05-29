@@ -5,7 +5,12 @@ metadata:
 spec:
   type: ClusterIP
   selector:
+    # Provide access to
     component: server
   ports:
-    - port: 5001
-      targetPort: 5001
+    # How other pods inside the cluster access the pod that this service connects to (server)
+    - port: 80 # 5001
+      # From ClusterIPService to .Net core program inside the cluster in the pod
+      # The port on the target pod
+      targetPort: 80
+      protocol: TCP
