@@ -27,11 +27,11 @@ before_install:
   # Login to dogger the password is emmited over stdin into this command
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Build the test image. Is nestet in the client folder
-  - docker build -t bomarconi/quasar-test -f ./client/Dockerfile.dev ./client
+  #- docker build -t bomarconi/quasar-test -f ./client/Dockerfile.dev ./client
   #
-script:
+# script:
   # -- -- coverage means no watchmode
-  - docker run bomarconi/quasar-test quasar test --unit jest # -- --coverage
+  # - docker run bomarconi/quasar-test quasar test --unit jest # -- --coverage
 
 # Use generic language otherwise it will build in Ruby which is default
 language: generic
