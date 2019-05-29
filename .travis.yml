@@ -38,3 +38,4 @@ deploy:
   script: bash ./deploy.sh # The command to run the script
   on:
     branch: master
+#
