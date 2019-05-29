@@ -9,7 +9,7 @@ env:
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
   # The command we got from Travis CLI. It decrypt it and place it in the root directory
-  - openssl aes-256-cbc -K $encrypted_a4226307f794_key -iv $encrypted_a4226307f794_iv -in service-account.json.enc -out service-account.json -d
+  - openssl aes-256-cbc -K $encrypted_de9c57dbf16e_key -iv $encrypted_de9c57dbf16e_iv -in service-account.json.enc -out service-account.json -d
   # Download and install Google Cloud SDK. The last part is going to install it.
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   # Look at the default install directory and modify the shell via the source command
@@ -38,3 +38,5 @@ deploy:
   script: bash ./deploy.sh # The command to run the script
   on:
     branch: master
+
+openssl aes-256-cbc -K $encrypted_de9c57dbf16e_key -iv $encrypted_de9c57dbf16e_iv -in service-account.json.enc -out service-account.json -d
