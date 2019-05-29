@@ -34,9 +34,7 @@ before_install:
   # - docker run bomarconi/quasar-test quasar test --unit jest # -- --coverage
 
 deploy:
-  # Run script file to deploy
-  provider: script
-  # The command to run the script
-  script: bash ./deploy.sh
+  provider: script # Run script file to deploy
+  script: bash ./deploy.sh # The command to run the script
   on:
     branch: master
