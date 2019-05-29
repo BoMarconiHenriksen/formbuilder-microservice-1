@@ -33,6 +33,7 @@ before_install:
   # -- -- coverage means no watchmode
   # - docker run bomarconi/quasar-test quasar test --unit jest # -- --coverage
 
+language: generic
 deploy:
   provider: script # Run script file to deploy
   script: bash ./deploy.sh # The command to run the script
