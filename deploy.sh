@@ -1,13 +1,13 @@
 # Building the images and add 2 tags for each image ./client/Dockerfile ./R3NextGenBackend/R3NextGenBackend/Dockerfile
 docker build -t bomarconi/quasar-client:latest -t bomarconi/quasar-client:$SHA -f ./client/Dockerfile ./client
-docker build -t bomarconi/formbuilder-server:latest -t bomarconi/formbuilder-server:$SHA -f ./R3NextGenBackend/R3NextGenBackend/Dockerfile
+docker build -t bomarconi/formbuilder-server:latest -t bomarconi/formbuilder-server:$SHA -f ./R3NextGenBackend/R3NextGenBackend/Dockerfile ./R3NextGenBackend/R3NextGenBackend
 
 # Push the images to docker hub
 docker push bomarconi/quasar-client:latest
 docker push bomarconi/formbuilder-server:latest
 
-push bomarconi/quasar-client:$SHA
-push bomarconi/formbuilder-server:$SHA
+docker push bomarconi/quasar-client:$SHA
+docker push bomarconi/formbuilder-server:$SHA
 
 # Apply the images to kubernetes
 kubectl apply -f k8s
