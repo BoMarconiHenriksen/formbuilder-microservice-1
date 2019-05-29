@@ -1,6 +1,6 @@
-# Building the images and add 2 tags for each image
-sudo docker build -t bomarconi/quasar-client:latest -t bomarconi/quasar-client:$SHA -f ./client/Dockerfile ./client
-sudo docker build -t bomarconi/formbuilder-server:latest -t bomarconi/formbuilder-server:$SHA -f ./R3NextGenBackend/R3NextGenBackend/Dockerfile ./R3NextGenBackend
+# Building the images and add 2 tags for each image ./client/Dockerfile ./R3NextGenBackend/R3NextGenBackend/Dockerfile
+sudo docker build -t bomarconi/quasar-client:latest -t bomarconi/quasar-client:$SHA -f ./client
+sudo docker build -t bomarconi/formbuilder-server:latest -t bomarconi/formbuilder-server:$SHA -f ./R3NextGenBackend/R3NextGenBackend
 
 # Push the images to docker hub
 docker push bomarconi/quasar-client:latest
