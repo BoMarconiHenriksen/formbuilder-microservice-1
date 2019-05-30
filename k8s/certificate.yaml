@@ -13,8 +13,8 @@ spec:
   commonName: ngc3.rm-group.dk
   # List of domain names that is associated with this certificate
   dnsNames:
-    - ngc3.rm-group.dk
-    - www.ngc3.rm-group.dk
+    - *.ngc3.rm-group.dk
+    #- www.ngc3.rm-group.dk
   acme:
     config:
       - http01:
