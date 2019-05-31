@@ -11,15 +11,15 @@ export const setNewGridItem = (state, inputFieldLayout) => {
 // List of templates from backend.
 export const getListOfGridItems = (state, payload) => {
   let tableData = [ ]
+
+  // We have to map the fetched data so the table can show the data
   for (let key in payload) {
     const template = { }
-    console.log('getListOfGridItems')
-    console.log(payload[key])
+
     template.id = payload[key].id
     template.name = payload[key].name
     template.completedDate = payload[key].completedForms[0].completedDate
     template.headline = payload[key].formFields[0].headline
-    template.indexFromFetch = key
 
     tableData.push(template)
   }
@@ -29,21 +29,23 @@ export const getListOfGridItems = (state, payload) => {
 
 // Update table after a post
 export const updateTableAfterPost = (state, template) => {
-  console.log('MU')
-  console.log(template)
-  let id = state.tableData.length + 1
+  // We have to map the response so it match the structure of the table
   let newEntity = [ ]
+
+  newEntity.id = template.id
+  newEntity.name = template.name
   newEntity.completedDate = template.completedForms[0].completedDate
   newEntity.headline = template.formFields[0].headline
-  newEntity.id = id
-  newEntity.indexFromFetch = id
-  newEntity.name = template.name
+
   state.tableData.push(newEntity)
 }
 
 // Update row in state after put in action
-export const storeUpdatRow = (state, payload) => {
+export const storeUpdateRow = (state, payload) => {
+  // Find the row to update
   const tableData = state.tableData.filter((row) => row.id === payload.id)
+
+  // We don't map this because we have to use it to show in the table.
   if (tableData.length === 1) {
     tableData[0].name = payload.name
     tableData[0].headline = payload.headline

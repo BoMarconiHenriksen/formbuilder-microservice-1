@@ -1,6 +1,6 @@
 import axios from 'axios'
 import state from '../layouts/state'
-const baseUrl = '/api' // https://localhost:5001
+const baseUrl = '/api' // https://localhost:5001/api
 
 import initialLayoutData from '../../assets/savedLayouts/demo.json'
 
@@ -46,10 +46,6 @@ export const addInputFieldToGrid = ({ commit, state }) => {
 
   inputFieldLayout.i = componentIndex
 
-  // Create an array of obejcts
-  // let listOfWidget = [ ]
-  // listOfWidget.push(inputFieldLayout)
-
   commit('setNewGridItem', inputFieldLayout)
 }
 
@@ -82,15 +78,19 @@ export async function fetchFormsFromDb ({ commit }) {
 
 // Update table row in database
 export async function updateRow ({ commit }, row) {
-  var updateTableData = getInitialTableFetch()
+  // We have to map the data from the table to match the data in the database
+  var lastFetch = getStateOfTableData()
 
-  updateTableData[0].name = row.name
-  updateTableData[0].formFields[0].headline = row.headline
-  updateTableData[0].completedForms[0].completedDate = row.completedDate
+  // Find the row from state to update
+  const rowToUpdate = lastFetch.filter((tableRow) => tableRow.id === row.id)
+
+  // Update name and headline
+  rowToUpdate[0].name = row.name
+  rowToUpdate[0].formFields[0].headline = row.headline
 
   try {
-    await axios.put(`${baseUrl}/Forms/${row.id}`, updateTableData[0])
-    commit('storeUpdatRow', row)
+    await axios.put(`${baseUrl}/Forms/${row.id}`, rowToUpdate[0])
+    commit('storeUpdateRow', row)
   } catch (err) {
     console.log(err)
   }
@@ -99,8 +99,9 @@ export async function updateRow ({ commit }, row) {
 // Post new item
 export async function postTemplate ({ commit }, template) {
   try {
-    await axios.post(`${baseUrl}/Forms/`, { id: template.id, name: template.name, formFields: template.formFields, completedForms: template.completedForms })
-    commit('updateTableAfterPost', template)
+    // After a post we get a response with the new entity. We need the id.
+    const response = await axios.post(`${baseUrl}/Forms/`, { id: template.id, name: template.name, formFields: template.formFields, completedForms: template.completedForms })
+    commit('updateTableAfterPost', response.data)
   } catch (err) {
     console.log(err)
   }
@@ -123,7 +124,7 @@ function generateRandomNumber () {
 }
 
 // Helper method that get the state of the initial fetch
-function getInitialTableFetch () {
+function getStateOfTableData () {
   let fetchedGridlayouts = state.fetchedGridlayouts
   return fetchedGridlayouts
 }
