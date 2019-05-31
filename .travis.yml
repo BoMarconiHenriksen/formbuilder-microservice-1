@@ -8,7 +8,7 @@ env:
     # Configure google cli so it's does not show prompts
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 before_install:
-  # The command we got from Travis CLI. It decrypt it and place it in the root directory
+  # Google cloud credientials. Encrypted with teavis cli to a file in root directory
   - openssl aes-256-cbc -K $encrypted_de9c57dbf16e_key -iv $encrypted_de9c57dbf16e_iv -in service-account.json.enc -out service-account.json -d
   # Download and install Google Cloud SDK. The last part is going to install it.
   - curl https://sdk.cloud.google.com | bash > /dev/null;
