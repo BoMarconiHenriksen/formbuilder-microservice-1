@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using R3NextGenBackend.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace R3NextGenBackend
@@ -19,7 +18,7 @@ namespace R3NextGenBackend
         }
 
         public IConfiguration Configuration { get; }
-        // https://andrewlock.net/running-async-tasks-on-app-startup-in-asp-net-core-part-1/
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -31,8 +30,6 @@ namespace R3NextGenBackend
                 .AllowAnyHeader()
                 .AllowCredentials());
             });
-
-            services.ConfigureIISIntegration();
 
             // Normal db connector
             services.AddDbContext<RepositoryContext>(options =>

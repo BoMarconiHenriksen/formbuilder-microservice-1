@@ -143,11 +143,4 @@ export default {
   }
 }
 
-// https://quasar-framework.org/components/datatable.html
-// https://quasar-framework.org/components/popup-edit.html
-// https://github.com/quasarframework/quasar-play/blob/master/src/pages/showcase/grouping/table/table-features.vue
-// https://quasar-framework.org/quasar-play/android/index.html#/showcase/grouping/table/table-features
-// https://quasar-framework.org/quasar-play/android/index.html#/showcase/grouping/table/table-features
-// https://v0-14.quasar-framework.org/quasar-play/android/index.html#/showcase/grouping/data-table
-
 </script>

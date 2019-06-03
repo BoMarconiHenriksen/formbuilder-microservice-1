@@ -63,42 +63,12 @@ export const storeDeleteRow = (state, id) => {
 
 // Mutation to remove item from gridLayout.
 export const removeItem = (state, payload) => {
-  // console.log('MUTATIONS ' + payload.key)
-
-  // console.log(state.gridLayout)
-
-  // state.gridLayout = state.gridLayout.slice(0, id).concat(state.gridLayout.slice(id + 1, state.gridLayout.length))
-
-  // state.gridLayout.splice(state.gridLayout.indexOf(id))
-  // let deleteLayout = state.gridLayout.map(item => item.id).indexOf(id) // find index of your object
-  // let deleteLayout = state.gridLayout.filter(item => item.id).indexOf(id)
-  // let deleteLayout = state.gridLayout.findIndex(t => t.id === id)
-
-  /* let deleteLayout = state.gridLayout.filter((item) => item.id === id)
-  console.log(deleteLayout)
-  state.gridLayout.splice(state.gridLayout.indexOf(deleteLayout[0]), 1) */
-
   // Be sure static is false when deleting.
   for (let x in state.gridLayout) {
     if (state.gridLayout[x].i === payload.key) {
       state.gridLayout.splice(state.gridLayout[x], 1)
     }
   }
-  // state.gridLayout.splice(state.gridLayout[payload.item], 1)
-
-  /* if (payload.key > -1) {
-    state.gridLayout.splice(payload.key, 1)
-  } */
-
-  // state.gridLayout.splice(state.gridLayout.indexOf(payload.key), 1)
-
-  // state.gridLayout.splice(state.gridLayout.item.id === id, 1)
-
-  /* if (deleteLayout.length === 1) {
-    state.gridLayout.splice(state.gridLayout.indexOf(deleteLayout[0]), 1)
-  } */
-
-  // console.log(state.gridLayout)
 }
 
 // Save name of input field

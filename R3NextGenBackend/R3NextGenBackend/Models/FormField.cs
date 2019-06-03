@@ -8,7 +8,6 @@ namespace BackendNextGen.Models
     {
         public FormField()
         {
-            // FormFieldValues = new HashSet<FormFieldValue>();
         }
 
         [Key]

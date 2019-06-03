@@ -10,6 +10,5 @@ export const getTableData = (state) => {
 
 // Get the state of the fetched grid layout list.
 export const getFetchedGridlayouts = (state) => {
-  console.log('GETTERS: ' + state.fetchedGridlayouts)
   return state.fetchedGridlayouts
 }

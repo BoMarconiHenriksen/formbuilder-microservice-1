@@ -1,6 +1,9 @@
 import axios from 'axios'
 import state from '../layouts/state'
-const baseUrl = '/api' // https://localhost:5001/api
+// Running the cluster with minikube or GKE
+// const baseUrl = '/api'
+// local development. Run npm install, quasar dev and run .Net Core
+const baseUrl = 'https://localhost:5001/api'
 
 import initialLayoutData from '../../assets/savedLayouts/demo.json'
 
@@ -86,6 +89,7 @@ export async function updateRow ({ commit }, row) {
 
   // Update name and headline
   rowToUpdate[0].name = row.name
+  rowToUpdate[0].id = row.id
   rowToUpdate[0].formFields[0].headline = row.headline
 
   try {

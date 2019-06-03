@@ -7,7 +7,6 @@ using BackendNextGen.Models;
 
 namespace R3NextGenBackend.Controllers
 {
-    // [Route("api/[controller]")]
     [Route("api/[controller]")]
     [ApiController]
     public class FormsController : ControllerBase
@@ -27,15 +26,8 @@ namespace R3NextGenBackend.Controllers
                 .Include(form => form.FormFields)
                     .ThenInclude(FormFields => FormFields.Component)
                 .Include(c => c.CompletedForms)
-                    // .ThenInclude(CompletedForms => CompletedForms.FormFieldValues)
-                .ToListAsync();
+                 .ToListAsync();
             return await list;
-            //return await _context.Form
-            //    .Include(form => form.FormFields)
-            //        .ThenInclude(FormFields => FormFields.Component)
-            //    .Include(c => c.CompletedForms)
-            //        // .ThenInclude(CompletedForms => CompletedForms.FormFieldValues)
-            //    .ToListAsync();
         }
 
          // GET: api/Forms/5
@@ -52,25 +44,6 @@ namespace R3NextGenBackend.Controllers
 
             return form;
         }
-
-        // PUT api/values/5
-        //[HttpPut("{id}")]
-        //public void Put(long id, [FromBody] Form form)
-        //{
-        //    // Get the row from the database
-        //    var formRow = _context.Form.Find(id);
-        //    //var changedHeadline = _context.FormField.Find(id);
-        //    // var formRow = _context.Form
-        //    //    .Include(form => form.FormFields)
-
-        //    if (formRow != null)
-        //    {
-        //        formRow.Name = form.Name;
-
-
-        //        _context.SaveChanges();
-        //    }
-        //}
 
         // PUT: api/Forms/5
         [HttpPut("{id}")]
@@ -91,27 +64,6 @@ namespace R3NextGenBackend.Controllers
             {
                 _context.Entry(f).State = EntityState.Modified;
             }
-
-            // Edit headline in FormFields
-            // form.FormFields.ToList().ForEach(f => _context.Entry(f).State = EntityState.Modified);
-
-            // Edit headline in FormFields
-            //var dbentity = _context.Form.Find(id);
-
-            //if (dbentity != null)
-            //{
-            //    dbentity.Name = form.Name;
-
-            //    foreach (var f in dbentity.FormFields)
-            //    {
-            //        var incomingFf = form.FormFields.SingleOrDefault(ef => ef.Id == f.Id);
-
-            //        if (incomingFf != null)
-            //        {
-            //            f.Headline = incomingFf.Headline;
-            //        }
-            //    }
-            //}
 
             try
             {

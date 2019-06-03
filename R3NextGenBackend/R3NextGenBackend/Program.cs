@@ -22,6 +22,8 @@ namespace R3NextGenBackend
                 try
                 {
                     var context = services.GetRequiredService<RepositoryContext>();
+
+                    // Initialize database at startup if database does not exist
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
