@@ -9,7 +9,7 @@ spec:
     component: server
   ports:
     # How other pods inside the cluster access the pod that this service connects to (server)
-    - port: 80 # 5001
+    - port: 80
       # From ClusterIPService to .Net core program inside the cluster in the pod
       # The port on the target pod
       targetPort: 80

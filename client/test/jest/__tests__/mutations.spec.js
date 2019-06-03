@@ -44,11 +44,11 @@ describe('mutations', () => {
 
 // Test storeUpdatRow
 // TODO: Make this test pass
-/* describe('mutations', () => {
+describe('mutations', () => {
     test('storeUpdateRow, sets a grid layout field to State.gridLayout.', () => {
 
         const EditedRow = { completedDate: "2019-05-15T00:00:00", headline: "Indtast Dit Navn", id: 1, indexFromFetch: "0", name: "Brand og redning" }
-        Create a fake state object
+        // Create a fake state object
         const state = {
             tableData: [{ completedDate: "2019-05-15T00:00:00", headline: "", id: 1, indexFromFetch: "0", name: "" }]
         }
@@ -57,7 +57,7 @@ describe('mutations', () => {
         expect(state.tableData[0].headline).toBe("Indtast Dit Navn")
         expect(state.tableData[0].name).toBe("Brand og redning")
     })
-}) */
+})
 
 // Test that the store updates after a new post
 describe('mutations', () => {
