@@ -17,19 +17,3 @@ spec:
           image: bomarconi/formbuilder-server
           ports:
             - containerPort: 80
-          # Need to change this to ms-sql - https://hub.docker.com/_/microsoft-mssql-server
-          # env:
-            # - name: MSSQL_PID
-            #   value: "Developer"
-            # - name: ACCEPT_EULA
-            #   value: "Y"
-            # - name: MSSQLUSER
-            #   value: sa
-            # - name: MSSQLHOST
-            #   value: mssql-cluster-ip-service
-            # - name: MSSQLPORT
-            #   value: '1433'
-            # - name: MSSQLDATABASE
-            #   value: c3NextGen
-            # - name: SA_PASSWORD
-            #   value: PassWord123
