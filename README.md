@@ -23,7 +23,7 @@ Info you need installation instructions for diffrent OS check this link https://
 4. Open ingress-service.yaml file in the k8s directory.  
 5. Comment out following lines in the file: 10, 12, 16, 17, 18 and 19.  
 6. Return to your shell and be sure that you arre in the root folder og the project.  
-#### Build the images and push them to your Docker account
+#### Build the images
 1. ```docker build -t [<Docker user account>]/quasar-client:latest ./client``` Exampel ```docker build -t bomarconi/quasar-client:latest ./client```    
 2. ```docker build -t [<Docker user account>]/formbuilder-server:latest ./R3NextGenBackend/R3NextGenBackend```  
 #### Push the Images to Your Docker Account
