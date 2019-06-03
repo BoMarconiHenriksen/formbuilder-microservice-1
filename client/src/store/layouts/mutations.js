@@ -11,8 +11,8 @@ export const setNewGridItem = (state, inputFieldLayout) => {
 // List of templates from backend.
 export const getListOfGridItems = (state, payload) => {
   let tableData = [ ]
-  console.log('getListOfGridItems')
-  console.log(payload)
+  // console.log('getListOfGridItems')
+  // console.log(payload)
   // We have to map the fetched data so the table can show the data
   for (let key in payload) {
     const template = { }
@@ -30,8 +30,8 @@ export const getListOfGridItems = (state, payload) => {
 
 // Update table after a post
 export const updateTableAfterPost = (state, template) => {
-  console.log('MU')
-  console.log(template)
+  // console.log('MU')
+  // console.log(template)
 
   let newEntity = [ ]
 
