@@ -32,7 +32,7 @@ export const addInputFieldToGrid = ({ commit, state }) => {
     'static': false
   }
 
-  // Change this to a counter!
+  // TODO: Change this to a counter!
   var randomNumber = generateRandomNumber()
   let running = true
   var componentIndex = null
