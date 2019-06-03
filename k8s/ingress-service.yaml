@@ -16,22 +16,10 @@ spec:
   tls:
     - hosts:
         - ngc3.rm-group.dk
-        - www.ngc3.rm-group.dk
       secretName: ngc3-dk # the name of the secret from certificate.yaml
   rules:
     # When someone comes to our domain this is the rules we want to apply. This applies only for ngc3.rm-group.dk so we have to repeat the rules
     - host: ngc3.rm-group.dk
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: client-cluster-ip-service
-              servicePort: 8080
-          - path: /api/Forms
-            backend:
-              serviceName: formbuilder-server-cluster-ip-service
-              servicePort: 80
-    - host: www.ngc3.rm-group.dk
       http:
         paths:
           - path: /

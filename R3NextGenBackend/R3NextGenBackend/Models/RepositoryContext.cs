@@ -19,25 +19,10 @@ namespace R3NextGenBackend
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-           
-
         }
 
-        // By convention, the Entity Framework enables cascade delete for non-nullable foreign keys and for many-to-many relationships. 
-        // This can result in circular cascade delete rules, which will cause an exception when you try to add a migration. 
-        // For example, if you didn't define the Department.InstructorID property as nullable, 
-        // EF would configure a cascade delete rule to delete the instructor when you delete the department, 
-        // which isn't what you want to have happen. 
-        // If your business rules required the InstructorID property to be non-nullable, you would have to use the following fluent API statement to disable cascade delete on the relationship:
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            // sql server
-            //modelBuilder.Entity<FormFieldValue>()
-            //    .HasOne(f => f.FormField)
-            //    .WithMany()
-            //    .OnDelete(DeleteBehavior.Restrict);
 
             // Create one to one relationship
             modelBuilder.Entity<FormField>()
@@ -47,7 +32,6 @@ namespace R3NextGenBackend
 
             //Seed data 
             modelBuilder.Entity<Form>().HasData(
-                // new Form()
                 new Form { Id = 1, Name = "Brand" },
                 new Form { Id = 2, Name = "Affaldssortering" },
                 new Form { Id = 3, Name = "Biluheld" },
@@ -58,7 +42,6 @@ namespace R3NextGenBackend
                 );
 
             modelBuilder.Entity<CompletedForm>().HasData(
-                // new CompletedForm()
                 new CompletedForm { Id = 1, UserId = 1, CompletedDate = DateTime.Now.Date, FormId = 1 },
                 new CompletedForm { Id = 2, UserId = 2, CompletedDate = DateTime.Now.Date, FormId = 2 },
                 new CompletedForm { Id = 3, UserId = 3, CompletedDate = DateTime.Now.Date, FormId = 3 },
@@ -69,7 +52,6 @@ namespace R3NextGenBackend
                 );
 
             modelBuilder.Entity<FormField>().HasData(
-               // new FormField()
                new FormField { Id = 1, Column = 3, Row = 3, Width = 3, Height = 3, Headline = "Indtast Dit Navn", Static = false, FormId = 1 },
                new FormField { Id = 2, Column = 2, Row = 3, Width = 2, Height = 3, Headline = "Er der en affaldsspand", Static = false, FormId = 2 },
                new FormField { Id = 3, Column = 3, Row = 3, Width = 3, Height = 4, Headline = "Antal kvæstede", Static = false, FormId = 3 },
@@ -80,7 +62,6 @@ namespace R3NextGenBackend
                );
 
             modelBuilder.Entity<Component>().HasData(
-               // new Component()
                new Component { Id = 1, ComponentName = "appInputFieldComponent", FormFieldId = 1 },
                new Component { Id = 2, ComponentName = "appInputFieldComponent", FormFieldId = 2 },
                new Component { Id = 3, ComponentName = "appInputFieldComponent", FormFieldId = 3 },
@@ -89,7 +70,6 @@ namespace R3NextGenBackend
                new Component { Id = 6, ComponentName = "appInputFieldComponent", FormFieldId = 6 },
                new Component { Id = 7, ComponentName = "appInputFieldComponent", FormFieldId = 7 }
                );
-
 
         }
     }

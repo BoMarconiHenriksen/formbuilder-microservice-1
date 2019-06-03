@@ -8,7 +8,6 @@ namespace BackendNextGen.Models
     {
         public CompletedForm()
         {
-
         }
 
         [Key]
@@ -27,6 +26,5 @@ namespace BackendNextGen.Models
         public long FormId { get; set; }
         public Form Form { get; set; }
 
-        // public ICollection<FormFieldValue> FormFieldValues { get; set; }
     }
 }
