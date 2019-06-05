@@ -8,17 +8,18 @@
 
       <br>
       </div>
-      <!-- :layout: "getLayoutData" -->
-      <grid-layout :key="rerenderKey"
-         :layout.sync="getLayoutData"
-         :col-num="12"
-         :row-height="40"
-         :is-draggable=true
-         :is-resizable=true
-         :is-mirrored="false"
-         :vertical-compact="false"
-         :margin="[15, 15]"
-         :use-css-transforms="true">
+      <!-- Create the grid layout -->
+      <grid-layout
+        :key="rerenderKey"
+        :layout="getLayoutData"
+        :col-num="12"
+        :row-height="40"
+        :is-draggable=true
+        :is-resizable=true
+        :is-mirrored="false"
+        :vertical-compact="false"
+        :margin="[15, 15]"
+        :use-css-transforms="true">
 
       <grid-item v-for="(item, index) in getLayoutData" :key="item.i"
          :autoSize="true"
@@ -98,7 +99,7 @@ export default {
       templateToAdd.formFields[0].width = layoutFromFormBuilder[0].w
       templateToAdd.formFields[0].component.componentName = layoutFromFormBuilder[0].component
 
-      let today = new Date().toJSON().slice(0, 10).replace(/-/g, '/')
+      let today = new Date().toLocaleString()
       templateToAdd.completedForms[0].completedDate = today
 
       this.postTemplate(templateToAdd)
